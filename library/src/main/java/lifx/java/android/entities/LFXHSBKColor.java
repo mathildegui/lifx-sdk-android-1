@@ -66,6 +66,9 @@ public class LFXHSBKColor implements Cloneable {
         if (colors.length == 0) {
             return null;
         }
+		else if (colors.length == 1) {
+			return colors[0];
+		}
 
         float hueXTotal = 0;
         float hueYTotal = 0;
@@ -74,8 +77,8 @@ public class LFXHSBKColor implements Cloneable {
         long kelvinTotal = 0;
 
         for (LFXHSBKColor aColor : colors) {
-            hueXTotal += Math.sin(aColor.hue * Math.PI / 180.0);
-            hueYTotal += Math.cos(aColor.hue * Math.PI / 180.0);
+            hueXTotal += Math.cos(aColor.hue * Math.PI / 180.0);
+            hueYTotal += Math.sin(aColor.hue * Math.PI / 180.0);
             saturationTotal += aColor.saturation;
             brightnessTotal += aColor.brightness;
 
@@ -86,10 +89,14 @@ public class LFXHSBKColor implements Cloneable {
             }
         }
 
-        float M_1_PI = (float) (1.0f / Math.PI);
+		hueXTotal /= colors.length;
+		hueYTotal /= colors.length;
 
-        float hue = (float) (Math.atan2(hueXTotal, hueYTotal) * 0.5 * M_1_PI);
-        if (hue < 0.0) hue += 1.0;
+        float hue = (float) (Math.atan2(hueYTotal, hueXTotal) * 180 / Math.PI);
+        if (hue < 0.0) {
+            hue += 360f;
+        }
+
         float saturation = saturationTotal / (float) colors.length;
         float brightness = brightnessTotal / (float) colors.length;
         int kelvin = (int) (kelvinTotal / colors.length);
