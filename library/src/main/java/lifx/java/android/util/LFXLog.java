@@ -37,4 +37,43 @@ public class LFXLog {
         if (debug) Log.d(tag, input);
     }
 
+    public static boolean isInfoEnabled() {
+        return info;
+    }
+
+    public static void setInfoLogging(boolean info) {
+        LFXLog.info = info;
+    }
+
+    public static boolean isErrorEnabled() {
+        return error;
+    }
+
+    public static void setErrorLogging(boolean error) {
+        LFXLog.error = error;
+    }
+
+    public static boolean isWarningEnabled() {
+        return warning;
+    }
+
+    public static void setWarningLogging(boolean warning) {
+        LFXLog.warning = warning;
+    }
+
+    public static boolean isVerboseEnabled() {
+        return verbose;
+    }
+
+    public static void setVerboseLogging(boolean verbose) {
+        LFXLog.verbose = verbose;
+    }
+
+    public static boolean isDebugEnabled() {
+        return debug;
+    }
+
+    public static void setDebugLogging(boolean debug) {
+        LFXLog.debug = debug;
+    }
 }
