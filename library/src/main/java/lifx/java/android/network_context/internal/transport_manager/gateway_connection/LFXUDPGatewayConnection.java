@@ -38,6 +38,7 @@ public class LFXUDPGatewayConnection extends LFXGatewayConnection implements Soc
     private Timer outboxTimer;
     private Timer heartbeatTimer;
     private Timer idleTimeoutTimer;
+    private long nextTimeoutTick;
 
     private Runnable getHeartbeatTimerTask() {
         Runnable heartbeatTimerTask = new TimerTask() {
@@ -193,15 +194,22 @@ public class LFXUDPGatewayConnection extends LFXGatewayConnection implements Soc
             return;
         }
 
-        if (idleTimeoutTimer != null) {
-            idleTimeoutTimer.cancel();
-            idleTimeoutTimer.purge();
-        }
+        nextTimeoutTick = System.currentTimeMillis() + LFXSDKConstants.LFX_UDP_IDLE_TIMEOUT_INTERVAL;
 
-        idleTimeoutTimer = LFXTimerUtils.getTimerTaskWithPeriod(getIdleTimerTask(), LFXSDKConstants.LFX_UDP_IDLE_TIMEOUT_INTERVAL, false, "IdleTimeoutTimer");
+        if (idleTimeoutTimer == null) {
+//            idleTimeoutTimer.cancel();
+//            idleTimeoutTimer.purge();
+//        }
+//        else {
+            idleTimeoutTimer = LFXTimerUtils.getTimerTaskWithPeriod(getIdleTimerTask(), LFXSDKConstants.LFX_UDP_IDLE_TIMEOUT_INTERVAL, false, "IdleTimeoutTimer");
+        }
     }
 
     public void idleTimeoutTimerDidFire() {
+        if (nextTimeoutTick > System.currentTimeMillis()) {
+            return;
+        }
+
         LFXLog.w(TAG, "idleTimeoutTimerDidFire() - Occurred on UDP Connection " + toString() + ", disconnecting");
         setConnectionState(LFXGatewayConnectionState.NOT_CONNECTED);
         if(getListener()!=null) getListener().gatewayConnectionDidDisconnectWithError(this, null);
