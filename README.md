@@ -15,12 +15,25 @@ The SDK currently supports Android only.
 ### Installation
 
 #### Library Project Installation
-[The LIFX SDK library for Android is available via the jCenter repository](http://jcenter.bintray.com/com/senic/lifx-sdk-android/). To include the LIFX library in your Android app dependencies you need to add the following line to your `build.gradle`:
+[The LIFX SDK library for Android is available via the jCenter repository](http://jcenter.bintray.com/com/senic/lifx-sdk-android/). To include the LIFX library in your Android app dependencies you need to add the following lines:
+
+In your project's `build.gradle`:
+
+```groovy
+allprojects {
+    repositories {
+        jcenter()
+        *maven { url "https://jitpack.io" }*
+    }
+}
+```
+
+And in your module's `build.gradle`:
 
 ```groovy
 dependencies {
    ...
-   compile "com.senic:lifx-sdk-android:0.5"
+   *compile 'com.github.getsenic:lifx-sdk-android:v0.5.3"*
 }
 ```
 
