@@ -238,7 +238,7 @@ public class LFXUDPGatewayConnection extends LFXGatewayConnection implements Soc
             return;
         }
         else {
-            LFXLog.i(TAG, "udpSocketRx() - Got: " + message.getType().toString());
+            LFXLog.i(TAG, "udpSocketRx() - Got: " + message.getType().name());
         }
 
         if (getListener() != null) {
