@@ -15,7 +15,7 @@ The SDK currently supports Android only.
 ### Installation
 
 #### Library Project Installation
-[The LIFX SDK library for Android is available via the jCenter repository](http://jcenter.bintray.com/com/senic/lifx-sdk-android/). To include the LIFX library in your Android app dependencies you need to add the following lines:
+To include the LIFX library in your Android app dependencies you need to add the following lines:
 
 In your project's `build.gradle`:
 
