@@ -84,23 +84,12 @@ public class LFXGatewayDescriptor {
     }
 
     public boolean equals(LFXGatewayDescriptor aGatewayDescriptor) {
-        if (aGatewayDescriptor == null) {
-            return false;
-        }
-
-        if (!aGatewayDescriptor.getHost().equals(this.host)) {
-            return false;
-        }
-
-        if (aGatewayDescriptor.getPort() != this.port) {
-            return false;
-        }
-
-        if (aGatewayDescriptor.getService() != this.service) {
-            return false;
-        }
-
-        return true;
+        return (aGatewayDescriptor != null &&
+                host.equals(aGatewayDescriptor.host) &&
+                port == aGatewayDescriptor.port &&
+                service == aGatewayDescriptor.service &&
+                ( (path == null && aGatewayDescriptor.path == null) ||
+                        (path != null && path.equals(aGatewayDescriptor.path))));
     }
 
     public Object clone() {

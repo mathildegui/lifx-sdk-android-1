@@ -56,19 +56,9 @@ public class LFXBinaryPath {
     }
 
     public boolean equals(LFXBinaryPath aBinaryPath) {
-        if (aBinaryPath == null) {
-            return false;
-        }
-
-        if (!this.targetID.equals(aBinaryPath.targetID)) {
-            return false;
-        }
-
-        if (!this.siteID.equals(aBinaryPath.siteID)) {
-            return false;
-        }
-
-        return true;
+        return (aBinaryPath != null &&
+                targetID.equals(aBinaryPath.targetID) &&
+                siteID.equals(aBinaryPath.siteID));
     }
 
     public static LFXBinaryPath getBroadcastBinaryPathWithSiteID(LFXSiteID siteID) {

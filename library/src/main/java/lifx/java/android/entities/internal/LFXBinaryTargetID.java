@@ -9,6 +9,7 @@
 package lifx.java.android.entities.internal;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import lifx.java.android.util.LFXByteUtils;
 
@@ -200,14 +201,7 @@ public class LFXBinaryTargetID {
     }
 
     public boolean equals(LFXBinaryTargetID aTargetID) {
-        if (aTargetID == null) {
-            return false;
-        }
-
-        if (!LFXByteUtils.areByteArraysEqual(deviceBytes, aTargetID.deviceBytes)) {
-            return false;
-        }
-
-        return true;
+        return (aTargetID != null &&
+                Arrays.equals(deviceBytes, aTargetID.deviceBytes));
     }
 }

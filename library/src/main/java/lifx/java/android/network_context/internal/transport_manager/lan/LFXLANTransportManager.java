@@ -334,7 +334,7 @@ public class LFXLANTransportManager extends LFXTransportManager implements LFXGa
         LFXGatewayConnection existingConnection = null;
 
         for (LFXGatewayDescriptor aDescriptor : gatewayConnections.keySet()) {
-            if (aDescriptor.toString().equals(gateway.toString())) {
+            if (aDescriptor.equals(gateway)) {
                 existingConnection = gatewayConnections.get(aDescriptor);
             }
         }

@@ -8,6 +8,8 @@
 
 package lifx.java.android.entities.internal;
 
+import java.util.Arrays;
+
 import lifx.java.android.util.LFXByteUtils;
 
 public class LFXSiteID {
@@ -66,15 +68,8 @@ public class LFXSiteID {
 
     @Override
     public boolean equals(Object aSiteID) {
-        if (aSiteID == null) {
-            return false;
-        }
-
-        if (!LFXByteUtils.areByteArraysEqual(data, ((LFXSiteID)aSiteID).data)) {
-            return false;
-        }
-
-        return true;
+        return (aSiteID instanceof LFXSiteID &&
+                Arrays.equals(data, ((LFXSiteID) aSiteID).data));
     }
 
     @Override
