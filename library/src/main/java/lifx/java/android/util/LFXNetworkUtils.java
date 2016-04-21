@@ -21,9 +21,18 @@ import android.net.wifi.WifiManager;
 
 public class LFXNetworkUtils {
     private final static String TAG = LFXNetworkUtils.class.getSimpleName();
+    public static final int EXPIRE_TIME = 60000; //ms
+    public static String sLocalHostAddress = null;
+    public static long sLocalHostAddressExpires;
+    public static String sBroadcastAddress = null;
+    public static long sBroadcastAddressExpires;
 
     @SuppressLint("DefaultLocale")
     public static String getLocalHostAddress() {
+        if (sLocalHostAddress != null && sLocalHostAddressExpires > System.currentTimeMillis()) {
+            return sLocalHostAddress;
+        }
+
         boolean useIPv4 = true;
 
         try {
@@ -33,15 +42,19 @@ public class LFXNetworkUtils {
                 for (InetAddress addr : addrs) {
                     if (!addr.isLoopbackAddress()) {
                         String sAddr = addr.getHostAddress().toUpperCase();
-                        boolean isIPv4 = sAddr.split(".").length == 4;
+                        boolean isIPv4 = sAddr.split("\\.").length == 4;
                         if (useIPv4) {
                             if (isIPv4) {
+                                sLocalHostAddress = sAddr;
+                                sLocalHostAddressExpires = System.currentTimeMillis() + EXPIRE_TIME;
                                 return sAddr;
                             }
                         } else {
                             if (!isIPv4) {
                                 int delim = sAddr.indexOf('%'); // drop ip6 port suffix
-                                return delim < 0 ? sAddr : sAddr.substring(0, delim);
+                                sLocalHostAddress = delim < 0 ? sAddr : sAddr.substring(0, delim);
+                                sLocalHostAddressExpires = System.currentTimeMillis() + EXPIRE_TIME;
+                                return sLocalHostAddress;
                             }
                         }
                     }
@@ -103,6 +116,10 @@ public class LFXNetworkUtils {
 //	}
 
     public static String getBroadcastAddress(Context context) {
+        if (sBroadcastAddress != null && sBroadcastAddressExpires > System.currentTimeMillis()) {
+            return sBroadcastAddress;
+        }
+
         WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
         DhcpInfo dhcp = wifi.getDhcpInfo();
 
@@ -111,12 +128,16 @@ public class LFXNetworkUtils {
         for (int k = 0; k < 4; k++)
             quads[k] = (byte) (broadcast >> (k * 8));
         try {
-            return InetAddress.getByAddress(quads).getHostAddress();
+            sBroadcastAddress = InetAddress.getByAddress(quads).getHostAddress();
+            sBroadcastAddressExpires = System.currentTimeMillis() + EXPIRE_TIME;
+            return sBroadcastAddress;
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
 
-        return "255.255.255.255";
+        sBroadcastAddress = "255.255.255.255";
+        sBroadcastAddressExpires = System.currentTimeMillis() + EXPIRE_TIME;
+        return sBroadcastAddress;
     }
 
     public static String getIPv4StringByStrippingIPv6Prefix(String in) {
