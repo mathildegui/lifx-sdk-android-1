@@ -237,6 +237,10 @@ public class LFXUDPGatewayConnection extends LFXGatewayConnection implements Soc
             LFXLog.e(TAG, "udpSocketRx() - Couldn't create message from data: " + Arrays.toString(data));
             return;
         }
+        else if (data.length > 36 && data[32] == 3 && data[36] != 1) {
+            // Ignore state messages from a different protocol
+            return;
+        }
         else {
             LFXLog.i(TAG, "udpSocketRx() - Got: " + message.getType().name());
         }
