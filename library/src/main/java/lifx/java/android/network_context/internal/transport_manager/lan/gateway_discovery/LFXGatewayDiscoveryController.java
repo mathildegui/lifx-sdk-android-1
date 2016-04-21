@@ -94,7 +94,7 @@ public class LFXGatewayDiscoveryController {
             return;
         }
         else {
-            LFXLog.i(TAG, "handleStatePANGatewayMessage() - " + service.toString());
+            LFXLog.i(TAG, "handleStatePANGatewayMessage() - " + service.name());
         }
 
         LFXGatewayDescriptor gatewayDescriptor = LFXGatewayDescriptor.getGatewayDescriptorWithHostPortPathService(host, port, path, service);

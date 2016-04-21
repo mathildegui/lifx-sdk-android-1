@@ -104,7 +104,7 @@ public class LFXLANTransportManager extends LFXTransportManager implements LFXGa
 
             boolean newIsConnected = false;
             for (LFXGatewayConnection aGatewayConnection : gatewayConnections.values()) {
-                LFXLog.d(TAG,"connectionStatesDidChange() - "+aGatewayConnection.getGatewayDescriptor().toString() + " : " + aGatewayConnection.getConnectionState().toString());
+                LFXLog.d(TAG,"connectionStatesDidChange() - "+aGatewayConnection.getGatewayDescriptor().toString() + " : " + aGatewayConnection.getConnectionState().name());
 
                 if (aGatewayConnection.getConnectionState() == LFXGatewayConnectionState.CONNECTED) {
                     newIsConnected = true;
@@ -118,7 +118,7 @@ public class LFXLANTransportManager extends LFXTransportManager implements LFXGa
     }
 
     public void sendMessage(LFXMessage message) {
-        LFXLog.i(TAG, "sendMessage() - " + message.getType().toString());
+        LFXLog.i(TAG, "sendMessage() - " + message.getType().name());
         if (message.getPath().getSiteID().isZeroSite()) {
             for (String aGatewayHost : getGatewayHosts()) {
                 //LFXGatewayConnection tcpConnection = getGatewayConnectionForHost(aGatewayHost, Service.LX_PROTOCOL_DEVICE_SERVICE_TCP);

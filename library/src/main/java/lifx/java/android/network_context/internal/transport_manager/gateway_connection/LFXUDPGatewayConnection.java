@@ -168,7 +168,7 @@ public class LFXUDPGatewayConnection extends LFXGatewayConnection implements Soc
             LinkedList<LFXMessage> outboxAsLinkedList = (LinkedList<LFXMessage>) messageOutbox;
 
             for (int i = 0; i < messageOutbox.size(); i++) {
-                String key = outboxAsLinkedList.get(i).getType().toString();
+                String key = outboxAsLinkedList.get(i).getType().name();
                 Integer bla = types.get(key);
 
                 if (bla == null) {

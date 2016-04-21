@@ -103,7 +103,7 @@ public abstract class LFXGatewayConnection {
     }
 
     public String getConnectionStateString() {
-        return this.connectionState.toString();
+        return this.connectionState.name();
     }
 
     // For subclasses to use when queueing messages in an outbox
