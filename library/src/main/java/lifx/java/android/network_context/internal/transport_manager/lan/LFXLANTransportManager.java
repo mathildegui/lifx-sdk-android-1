@@ -44,18 +44,28 @@ public class LFXLANTransportManager extends LFXTransportManager implements LFXGa
     public void disconnect() {
         enabled = false;
 
-        broadcastUDPConnection.disconnect();
-        broadcastUDPConnection.setListener(null);
-        peerToPeerUDPConnection.disconnect();
-        peerToPeerUDPConnection.setListener(null);
-        gatewayDiscoveryController.shutDown();
-
-        for (LFXGatewayConnection aGatewayConnection : gatewayConnections.values()) {
-            aGatewayConnection.disconnect();
-            aGatewayConnection.setListener(null);
+        if (broadcastUDPConnection != null) {
+            broadcastUDPConnection.disconnect();
+            broadcastUDPConnection.setListener(null);
         }
 
-        gatewayConnections.clear();
+        if (peerToPeerUDPConnection != null) {
+            peerToPeerUDPConnection.disconnect();
+            peerToPeerUDPConnection.setListener(null);
+        }
+
+        if (gatewayDiscoveryController != null) {
+            gatewayDiscoveryController.shutDown();
+        }
+
+        if (gatewayConnections != null) {
+            for (LFXGatewayConnection aGatewayConnection : gatewayConnections.values()) {
+                aGatewayConnection.disconnect();
+                aGatewayConnection.setListener(null);
+            }
+
+            gatewayConnections.clear();
+        }
     }
 
     public LFXLANTransportManager() {
