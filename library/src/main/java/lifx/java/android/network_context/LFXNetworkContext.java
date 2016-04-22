@@ -164,6 +164,11 @@ public class LFXNetworkContext implements LFXTransportManagerListener {
     }
 
     public void forwardMessageToDeviceWithDeviceID(LFXMessage message, String deviceID) {
+        if ("000000000000".equals(deviceID)) {
+            // Ignore bogus address
+            return;
+        }
+
         LFXLight light = allLightsCollection.getLightWithDeviceID(deviceID);
 
         if (light == null) {
