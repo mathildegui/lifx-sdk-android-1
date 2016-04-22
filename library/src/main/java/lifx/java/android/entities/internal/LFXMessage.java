@@ -179,7 +179,7 @@ public class LFXMessage {
         try {
             payload = messagePayloadClass.getDeclaredConstructor(new Class[]{byte[].class, int.class}).newInstance(data, PAYLOAD_START_INDEX);
         } catch (NullPointerException e) {
-            LFXLog.e(TAG,"getPayloadFromMessageData() - No implementation for "+messageType.toString());
+            if (LFXLog.isErrorEnabled()) LFXLog.e(TAG,"getPayloadFromMessageData() - No implementation for "+messageType.toString());
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -197,7 +197,7 @@ public class LFXMessage {
 
     public static LFXMessage messageWithMessageData(byte[] data) {
         if (data == null || data.length == 0 || getTypeFromMessageData(data) == null) {
-            LFXLog.w(TAG, "Warning: invalid type: " + StructleTypes.getShortValue(data[32], data[33]));
+            if (LFXLog.isWarningEnabled()) LFXLog.w(TAG, "Warning: invalid type: " + StructleTypes.getShortValue(data[32], data[33]));
             return null;
         }
 
@@ -206,13 +206,13 @@ public class LFXMessage {
 
         if (!messageIsAddressable(bytes)) {
             // We don't know how to deal with non-addressable messages, but the bulbs are sometimes not setting this flag correctly
-            LFXLog.w(TAG, "Warning: Message claims to be non-addressable: " + data);
+            if (LFXLog.isWarningEnabled()) LFXLog.w(TAG, "Warning: Message claims to be non-addressable: " + data);
             return null;
         }
 
         int protocol = getProtocolFromMessageData(bytes);
         if (protocol != CURRENT_PROTOCOL) {
-            LFXLog.w(TAG, "Handling non-protocol message of protocol " + protocol);
+            if (LFXLog.isWarningEnabled()) LFXLog.w(TAG, "Handling non-protocol message of protocol " + protocol);
             return LFXMessage.initWithNonProtocolMessageData(data);
         }
 
@@ -423,7 +423,7 @@ public class LFXMessage {
             writeSiteIDToMessage(path.getSiteID().getDataValue(), data);
         }
         else {
-            LFXLog.e(TAG,"getMessageDataRepresentation() - Message with no path/siteId:"+ Arrays.toString(data));
+            if (LFXLog.isErrorEnabled()) LFXLog.e(TAG,"getMessageDataRepresentation() - Message with no path/siteId:"+ Arrays.toString(data));
         }
 
         if (path.getBinaryTargetID().geTargetType() == LFXBinaryTargetType.DEVICE) {

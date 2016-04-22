@@ -174,8 +174,8 @@ public class LxProtocolWan {
         }
 
         public void printMessageData() {
-            LFXLog.d(TAG, user);            // Field: user - Structle::String byte offset: 64
-            LFXLog.d(TAG, pass);            // Field: pass - Structle::String byte offset: 64
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, user);            // Field: user - Structle::String byte offset: 64
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, pass);            // Field: pass - Structle::String byte offset: 64
         }
 
         public static void loadMessageDataWithPayloadAtOffset(byte[] messageData, int offset
@@ -362,7 +362,7 @@ public class LxProtocolWan {
         }
 
         public void printMessageData() {
-            LFXLog.d(TAG, "Byte Array Print not currently supported");
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "Byte Array Print not currently supported");
         }
 
         public static void loadMessageDataWithPayloadAtOffset(byte[] messageData, int offset
@@ -477,7 +477,7 @@ public class LxProtocolWan {
         }
 
         public void printMessageData() {
-            LFXLog.d(TAG, "Byte Array Print not currently supported");
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "Byte Array Print not currently supported");
         }
 
         public static void loadMessageDataWithPayloadAtOffset(byte[] messageData, int offset
@@ -599,8 +599,8 @@ public class LxProtocolWan {
         }
 
         public void printMessageData() {
-            LFXLog.d(TAG, "Byte Array Print not currently supported");
-            LFXLog.d(TAG, "Byte Array Print not currently supported");
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "Byte Array Print not currently supported");
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "Byte Array Print not currently supported");
             device.printValue("device");            // Field: device - Structle::Bool byte offset: 15
         }
 
@@ -763,8 +763,8 @@ public class LxProtocolWan {
         }
 
         public void printMessageData() {
-            LFXLog.d(TAG, "Byte Array Print not currently supported");
-            LFXLog.d(TAG, "Byte Array Print not currently supported");
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "Byte Array Print not currently supported");
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "Byte Array Print not currently supported");
             device.printValue("device");            // Field: device - Structle::Bool byte offset: 15
         }
 
@@ -927,8 +927,8 @@ public class LxProtocolWan {
         }
 
         public void printMessageData() {
-            LFXLog.d(TAG, "Byte Array Print not currently supported");
-            LFXLog.d(TAG, "Byte Array Print not currently supported");
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "Byte Array Print not currently supported");
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "Byte Array Print not currently supported");
             device.printValue("device");            // Field: device - Structle::Bool byte offset: 15
         }
 

@@ -40,7 +40,7 @@ public class LFXSocketTCP extends LFXSocketGeneric {
 
     public LFXSocketTCP() {
         super();
-        LFXLog.d(TAG, "LFXSocketTCP() - Constructor");
+        if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "LFXSocketTCP() - Constructor");
     }
 
     private class TCPReceiveTask implements Runnable {
@@ -99,7 +99,7 @@ public class LFXSocketTCP extends LFXSocketGeneric {
                         serverStarted = true;
                     }
                 } catch (Exception e) {
-                    LFXLog.d(TAG, "TCPReceiveTask() - TCP Connection Failed.");
+                    if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "TCPReceiveTask() - TCP Connection Failed.");
                 }
 
                 if (serverStarted) {
@@ -126,7 +126,7 @@ public class LFXSocketTCP extends LFXSocketGeneric {
                         SocketMessage[] messages = new SocketMessage[]{message};
                         publishProgress((SocketMessage[]) messages);
                     } else if (length < 0) {
-                        LFXLog.d(TAG, "TCPReceiveTask() - TCP Socket has been closed.");
+                        if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "TCPReceiveTask() - TCP Socket has been closed.");
                         close();
                     }
                 }
@@ -138,7 +138,7 @@ public class LFXSocketTCP extends LFXSocketGeneric {
 
             publishDisconnected();
 
-            LFXLog.d(TAG, "TCPReceiveTask() - TCP Socket Monitor Ended Execution.");
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "TCPReceiveTask() - TCP Socket Monitor Ended Execution.");
         }
     }
 

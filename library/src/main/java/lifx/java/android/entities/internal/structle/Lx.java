@@ -300,8 +300,8 @@ public class Lx {
             size.printValue("size");            // Field: size - Structle::Uint16 byte offset: 24
             _protocol.printValue("_protocol");                // Field: _protocol - Lx::ProtocolField byte offset: 24
             reserved.printValue("reserved");            // Field: reserved - Structle::Uint32 byte offset: 24
-            LFXLog.d(TAG,"Byte Array Print not currently supported");
-            LFXLog.d(TAG,"Byte Array Print not currently supported");
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG,"Byte Array Print not currently supported");
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG,"Byte Array Print not currently supported");
             _routing.printValue("_routing");                // Field: _routing - Lx::RoutingField byte offset: 24
         }
 
@@ -733,12 +733,12 @@ public class Lx {
             size.printValue("size");            // Field: size - Structle::Uint16 byte offset: 134
             _protocol.printValue("_protocol");                // Field: _protocol - Lx::ProtocolField byte offset: 134
             reserved.printValue("reserved");            // Field: reserved - Structle::Uint32 byte offset: 134
-            LFXLog.d(TAG,"Byte Array Print not currently supported");
-            LFXLog.d(TAG,"Byte Array Print not currently supported");
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG,"Byte Array Print not currently supported");
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG,"Byte Array Print not currently supported");
             _routing.printValue("_routing");                // Field: _routing - Lx::RoutingField byte offset: 134
             at_time.printValue("at_time");            // Field: at_time - Structle::Uint64 byte offset: 134
             type.printValue("type");            // Field: type - Structle::Uint16 byte offset: 134
-            LFXLog.d(TAG,"Byte Array Print not currently supported");
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG,"Byte Array Print not currently supported");
             payload.printMessageData();
         }
 

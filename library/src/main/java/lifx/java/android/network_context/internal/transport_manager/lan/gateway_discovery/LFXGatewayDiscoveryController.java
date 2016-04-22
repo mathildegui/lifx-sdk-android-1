@@ -43,7 +43,7 @@ public class LFXGatewayDiscoveryController {
     private LFXGatewayDiscoveryMode discoveryMode;
 
     public static LFXGatewayDiscoveryController getGatewayDiscoveryControllerWithLANTransportManager(LFXLANTransportManager transportManager, LFXGatewayDiscoveryControllerListener listener) {
-        LFXLog.d(TAG, "LFXGatewayDiscoveryController() - Static constructor");
+        if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "LFXGatewayDiscoveryController() - Static constructor");
         LFXGatewayDiscoveryController discoveryTable = new LFXGatewayDiscoveryController();
         discoveryTable.table = new ArrayList<LFXGatewayDiscoveryTableEntry>();
         discoveryTable.transportManager = transportManager;
@@ -90,11 +90,11 @@ public class LFXGatewayDiscoveryController {
 
         // TODO: remove to enable TCP
         if (service == Service.LX_PROTOCOL_DEVICE_SERVICE_TCP) {
-            LFXLog.e(TAG, "handleStatePANGatewayMessage() - TCP Protocol unsupported");
+            if (LFXLog.isErrorEnabled()) LFXLog.e(TAG, "handleStatePANGatewayMessage() - TCP Protocol unsupported");
             return;
         }
         else {
-            LFXLog.i(TAG, "handleStatePANGatewayMessage() - " + service.name());
+            if (LFXLog.isInfoEnabled()) LFXLog.i(TAG, "handleStatePANGatewayMessage() - " + service.name());
         }
 
         LFXGatewayDescriptor gatewayDescriptor = LFXGatewayDescriptor.getGatewayDescriptorWithHostPortPathService(host, port, path, service);
@@ -159,7 +159,7 @@ public class LFXGatewayDiscoveryController {
             discoveryTimer.purge();
         }
 
-        LFXLog.d(TAG, "configureTimerForDiscoveryMode() - Mode="+discoveryMode+" Timer Period: " + duration);
+        if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "configureTimerForDiscoveryMode() - Mode="+discoveryMode+" Timer Period: " + duration);
         discoveryTimer = LFXTimerUtils.getTimerTaskWithPeriod(getDiscoverTimerTask(), duration, false, "DisoveryTimer");
     }
 

@@ -33,7 +33,7 @@ public class LFXRoutingTable {
 
     public LFXRoutingTable() {
         super();
-        LFXLog.d(TAG, "LFXRoutingTable() - Constructor");
+        if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "LFXRoutingTable() - Constructor");
         mutableDeviceMappingsByDeviceID = new HashMap<String, LFXDeviceMapping>();
         mutableTagMappings = new ArrayList<LFXTagMapping>();
         mutableSiteIDs = new ArrayList<LFXSiteID>();

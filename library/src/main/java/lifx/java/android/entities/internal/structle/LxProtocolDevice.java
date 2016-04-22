@@ -98,7 +98,7 @@ public class LxProtocolDevice {
         }
 
         public void printMessageData() {
-            LFXLog.d(TAG, "printMessageData() - Byte Array Print not currently supported");
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "printMessageData() - Byte Array Print not currently supported");
         }
 
         public static void loadMessageDataWithPayloadAtOffset(byte[] messageData, int offset, byte[] site) {
@@ -2069,7 +2069,7 @@ public class LxProtocolDevice {
         }
 
         public void printMessageData() {
-            LFXLog.d(TAG,"printMessageData() - "+label);            // Field: label - Structle::String byte offset: 32
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG,"printMessageData() - "+label);            // Field: label - Structle::String byte offset: 32
         }
 
         public static void loadMessageDataWithPayloadAtOffset(byte[] messageData, int offset
@@ -2225,7 +2225,7 @@ public class LxProtocolDevice {
         }
 
         public void printMessageData() {
-            LFXLog.d(TAG,"printMessageData() - "+label);            // Field: label - Structle::String byte offset: 32
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG,"printMessageData() - "+label);            // Field: label - Structle::String byte offset: 32
         }
 
         public static void loadMessageDataWithPayloadAtOffset(byte[] messageData, int offset
@@ -2722,7 +2722,7 @@ public class LxProtocolDevice {
 
         public void printMessageData() {
             tags.printValue("tags");            // Field: tags - Structle::Uint64 byte offset: 40
-            LFXLog.d(TAG,"printMessageData() - "+label);
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG,"printMessageData() - "+label);
         }
 
         public static void loadMessageDataWithPayloadAtOffset(byte[] messageData, int offset
@@ -2919,7 +2919,7 @@ public class LxProtocolDevice {
 
         public void printMessageData() {
             tags.printValue("tags");            // Field: tags - Structle::Uint64 byte offset: 40
-            LFXLog.d(TAG,"printMessageData() - "+label);
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG,"printMessageData() - "+label);
         }
 
         public static void loadMessageDataWithPayloadAtOffset(byte[] messageData, int offset

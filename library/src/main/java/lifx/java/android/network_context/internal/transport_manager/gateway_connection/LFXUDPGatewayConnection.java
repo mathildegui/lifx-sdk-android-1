@@ -78,7 +78,7 @@ public class LFXUDPGatewayConnection extends LFXGatewayConnection implements Soc
         socket = new LFXSocketUDP();
         heartbeatTimer = LFXTimerUtils.getTimerTaskWithPeriod(getHeartbeatTimerTask(), LFXSDKConstants.LFX_UDP_HEARTBEAT_INTERVAL, false, "UDPHeartbeatTimer");
         resetIdleTimeoutTimer();
-        LFXLog.d(TAG, "LFXUDPGatewayConnection() - Constructor, HeartBeat, SendRate & Idle Timer Tasks");
+        if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "LFXUDPGatewayConnection() - Constructor, HeartBeat, SendRate & Idle Timer Tasks");
     }
 
     public boolean isBroadcastConnection() {
@@ -96,18 +96,18 @@ public class LFXUDPGatewayConnection extends LFXGatewayConnection implements Soc
                 sendMessage(message);
             }
             else {
-                LFXLog.e(TAG,"heartbeatTimerDidFire() - getGatewayDescriptor().getPath()==null");
+                if (LFXLog.isErrorEnabled()) LFXLog.e(TAG,"heartbeatTimerDidFire() - getGatewayDescriptor().getPath()==null");
             }
         }
     }
 
     public void connect() {
-        LFXLog.d(TAG, "connect() - ConnectionState: " + getConnectionState());
+        if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "connect() - ConnectionState: " + getConnectionState());
         if (getConnectionState() != LFXGatewayConnectionState.NOT_CONNECTED) {
             return;
         }
 
-        LFXLog.d(TAG, "connect() - Connecting UDP Socket " + getGatewayDescriptor().getHost() + ":" + getGatewayDescriptor().getPort());
+        if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "connect() - Connecting UDP Socket " + getGatewayDescriptor().getHost() + ":" + getGatewayDescriptor().getPort());
 
         try {
             socket.addMessageListener(this);
@@ -181,9 +181,11 @@ public class LFXUDPGatewayConnection extends LFXGatewayConnection implements Soc
                 types.put(key, bla);
             }
 
-            LFXLog.w(TAG, "logMessageOutboxSize() - UDP " + getGatewayDescriptor().getHost() + " Message Outbox backlog is " + messageOutbox.size());
-            for (String aKey : types.keySet()) {
-                LFXLog.d(TAG,"logMessageOutboxSize()"+aKey + ": " + types.get(aKey) + ", ");
+            if (LFXLog.isWarningEnabled()) LFXLog.w(TAG, "logMessageOutboxSize() - UDP " + getGatewayDescriptor().getHost() + " Message Outbox backlog is " + messageOutbox.size());
+            if (LFXLog.isDebugEnabled()) {
+                for (String aKey : types.keySet()) {
+                    LFXLog.d(TAG, "logMessageOutboxSize()" + aKey + ": " + types.get(aKey) + ", ");
+                }
             }
 
         }
@@ -210,7 +212,7 @@ public class LFXUDPGatewayConnection extends LFXGatewayConnection implements Soc
             return;
         }
 
-        LFXLog.w(TAG, "idleTimeoutTimerDidFire() - Occurred on UDP Connection " + toString() + ", disconnecting");
+        if (LFXLog.isWarningEnabled()) LFXLog.w(TAG, "idleTimeoutTimerDidFire() - Occurred on UDP Connection " + toString() + ", disconnecting");
         setConnectionState(LFXGatewayConnectionState.NOT_CONNECTED);
         if(getListener()!=null) getListener().gatewayConnectionDidDisconnectWithError(this, null);
     }
@@ -242,7 +244,7 @@ public class LFXUDPGatewayConnection extends LFXGatewayConnection implements Soc
         LFXMessage message = LFXMessage.messageWithMessageData(data);
 
         if (message == null) {
-            LFXLog.e(TAG, "udpSocketRx() - Couldn't create message from data: " + Arrays.toString(data));
+            if (LFXLog.isErrorEnabled()) LFXLog.e(TAG, "udpSocketRx() - Couldn't create message from data: " + Arrays.toString(data));
             return;
         }
         else if (data.length > 36 && data[32] == 3 && data[36] != 1) {
@@ -250,7 +252,7 @@ public class LFXUDPGatewayConnection extends LFXGatewayConnection implements Soc
             return;
         }
         else {
-            LFXLog.i(TAG, "udpSocketRx() - Got: " + message.getType().name());
+            if (LFXLog.isInfoEnabled()) LFXLog.i(TAG, "udpSocketRx() - Got: " + message.getType().name());
         }
 
         if (getListener() != null) {

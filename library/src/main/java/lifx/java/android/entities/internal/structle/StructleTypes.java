@@ -33,7 +33,7 @@ public class StructleTypes {
         }
 
         public void printValue(String varName) {
-            LFXLog.d(TAG, varName + ": " + getValue());
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, varName + ": " + getValue());
         }
 
         public int getValue() {
@@ -52,7 +52,7 @@ public class StructleTypes {
         }
 
         public void printValue(String varName) {
-            LFXLog.d(TAG,varName + ": " + getValue());
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG,varName + ": " + getValue());
         }
 
         public int getValue() {
@@ -94,7 +94,7 @@ public class StructleTypes {
                 sb.append(String.format("%02X ", data[i]));
             }
             sb.append(")");
-            LFXLog.d(TAG, sb.toString());
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, sb.toString());
         }
     }
 
@@ -136,7 +136,7 @@ public class StructleTypes {
                 sb.append(String.format("%02X ", data[i]));
             }
             sb.append(")");
-            LFXLog.d(TAG, sb.toString());
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, sb.toString());
         }
     }
 
@@ -176,7 +176,7 @@ public class StructleTypes {
                 sb.append(String.format("%02X ", data[i]));
             }
             sb.append(")");
-            LFXLog.d(TAG, sb.toString());
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, sb.toString());
         }
     }
 
@@ -228,7 +228,7 @@ public class StructleTypes {
                 sb.append(String.format("%02X ", data[i]));
             }
             sb.append(")");
-            LFXLog.d(TAG, sb.toString());
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, sb.toString());
         }
     }
 
@@ -272,7 +272,7 @@ public class StructleTypes {
                 sb.append(String.format("%02X ", value[i]));
             }
             sb.append(")");
-            LFXLog.d(TAG, sb.toString());
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, sb.toString());
         }
     }
 
@@ -326,7 +326,7 @@ public class StructleTypes {
                 sb.append(String.format("%02X ", value[i]));
             }
             sb.append(")");
-            LFXLog.d(TAG, sb.toString());
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, sb.toString());
         }
     }
 
@@ -374,7 +374,7 @@ public class StructleTypes {
                 sb.append(String.format("%02X ", value[i]));
             }
             sb.append(")");
-            LFXLog.d(TAG, sb.toString());
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, sb.toString());
         }
     }
 
@@ -477,7 +477,7 @@ public class StructleTypes {
                 sb.append(String.format("%02X ", data[i]));
             }
             sb.append(")");
-            LFXLog.d(TAG, sb.toString());
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, sb.toString());
         }
     }
 
@@ -521,7 +521,7 @@ public class StructleTypes {
                 sb.append(String.format("%02X ", value[i]));
             }
             sb.append(")");
-            LFXLog.d(TAG, sb.toString());
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, sb.toString());
         }
     }
 
@@ -569,7 +569,7 @@ public class StructleTypes {
                 sb.append(String.format("%02X ", value[i]));
             }
             sb.append(")");
-            LFXLog.d(TAG,sb.toString());
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG,sb.toString());
         }
     }
 

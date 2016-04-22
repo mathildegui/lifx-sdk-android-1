@@ -35,7 +35,7 @@ public class LFXSocketUDP extends LFXSocketGeneric {
 
     public LFXSocketUDP() {
         super();
-        LFXLog.d(TAG,"LFXSocketUDP() - Constructor");
+        if (LFXLog.isDebugEnabled()) LFXLog.d(TAG,"LFXSocketUDP() - Constructor");
     }
 
     public class MessageSendTask implements Runnable {
@@ -154,11 +154,11 @@ public class LFXSocketUDP extends LFXSocketGeneric {
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    LFXLog.d(TAG, "UDPReceiveTask() - Error Starting server. IP: " + ipAddress.toString() + ", Port: " + port);
+                    if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "UDPReceiveTask() - Error Starting server. IP: " + ipAddress.toString() + ", Port: " + port);
                     updSocket = null;
                 }
 
-                LFXLog.d(TAG, "UDPReceiveTask() - UDP SOCKET MONITOR IS ONLINE - ip: " + ipAddress.toString() + ", port: " + port);
+                if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "UDPReceiveTask() - UDP SOCKET MONITOR IS ONLINE - ip: " + ipAddress.toString() + ", port: " + port);
 
                 if (serverStarted) {
                     setServerRunning(true);
@@ -178,20 +178,20 @@ public class LFXSocketUDP extends LFXSocketGeneric {
                     publishProgress((SocketMessage[]) messages);
                 }
             } catch (Exception e) {
-                LFXLog.d(TAG, "UDPReceiveTask() - UDP Socket has been closed.");
+                if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "UDPReceiveTask() - UDP Socket has been closed.");
             }
 
             close();
 
             publishDisconnected();
 
-            LFXLog.d(TAG, "UDPReceiveTask() - UDP Socket Monitor Ended Execution.");
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "UDPReceiveTask() - UDP Socket Monitor Ended Execution.");
         }
     }
 
     @Override
     public void close() {
-        LFXLog.d(TAG, "close()");
+        if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "close()");
         super.close();
 
         if (updSocket != null) {

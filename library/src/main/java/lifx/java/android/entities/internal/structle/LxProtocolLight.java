@@ -1452,7 +1452,7 @@ public class LxProtocolLight {
             color.printMessageData();        // Field: color - Lx::Protocol::Light::Hsbk byte offset: 52
             dim.printValue("dim");                // Field: dim - Structle::Int16 byte offset: 52
             power.printValue("power");            // Field: power - Structle::Uint16 byte offset: 52
-            LFXLog.d(TAG, label);            // Field: label - Structle::String byte offset: 52
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, label);            // Field: label - Structle::String byte offset: 52
             tags.printValue("tags");            // Field: tags - Structle::Uint64 byte offset: 52
         }
 

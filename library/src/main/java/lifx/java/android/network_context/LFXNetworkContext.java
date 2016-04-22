@@ -110,7 +110,7 @@ public class LFXNetworkContext implements LFXTransportManagerListener {
     }
 
     public void transportManagerDidConnect(LFXTransportManager transportManager) {
-        LFXLog.d(TAG, "transportManagerDidConnect()");
+        if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "transportManagerDidConnect()");
         for (LFXNetworkContextListener aListener : listeners) {
             aListener.networkContextDidConnect(this);
         }
@@ -126,7 +126,7 @@ public class LFXNetworkContext implements LFXTransportManagerListener {
     }
 
     public void transportManagerDidDisconnect(LFXTransportManager transportManager) {
-        LFXLog.d(TAG, "transportManagerDidDisconnect()");
+        if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "transportManagerDidDisconnect()");
         for (LFXNetworkContextListener aListener : listeners) {
             aListener.networkContextDidDisconnect(this);
         }
@@ -274,7 +274,7 @@ public class LFXNetworkContext implements LFXTransportManagerListener {
                 }
             }
             else {
-                LFXLog.e(TAG,"updateDeviceTagMembershipsFromRoutingTable() - Null mapping for ID:"+aLight.getDeviceID());
+                if (LFXLog.isErrorEnabled()) LFXLog.e(TAG,"updateDeviceTagMembershipsFromRoutingTable() - Null mapping for ID:"+aLight.getDeviceID());
             }
         }
     }
@@ -319,7 +319,7 @@ public class LFXNetworkContext implements LFXTransportManagerListener {
     }
 
     public void logEverything() {
-        LFXLog.d(TAG,"Log Everything Called.");
+        if (LFXLog.isDebugEnabled()) LFXLog.d(TAG,"Log Everything Called.");
     }
 
     public void sendMessage(LFXMessage message) {
@@ -440,11 +440,11 @@ public class LFXNetworkContext implements LFXTransportManagerListener {
     public boolean renameTaggedLightCollectionWithNewTag(LFXTaggedLightCollection collection, String newTag) {
         LFXTaggedLightCollection existingTaggedCollectionWithNewTag = getTaggedLightCollectionForTag(newTag);
         if (existingTaggedCollectionWithNewTag != null) {
-            LFXLog.i(TAG, "Tag " + newTag + " already exists, aborting rename of " + collection.getTag());
+            if (LFXLog.isInfoEnabled()) LFXLog.i(TAG, "Tag " + newTag + " already exists, aborting rename of " + collection.getTag());
             return false;
         }
 
-        LFXLog.i(TAG, "Renaming tag " + collection.getTag() + " to " + newTag);
+        if (LFXLog.isInfoEnabled()) LFXLog.i(TAG, "Renaming tag " + collection.getTag() + " to " + newTag);
         for (LFXTagMapping aTagMapping : routingTable.getTagMappingsForTag(collection.getTag())) {
             LFXMessage setTagLabels = LFXMessage.messageWithTypeAndPath(Type.LX_PROTOCOL_DEVICE_SET_TAG_LABELS, LFXBinaryPath.getBroadcastBinaryPathWithSiteID(aTagMapping.getSiteID()));
             Object padding = new Object();
@@ -495,9 +495,9 @@ public class LFXNetworkContext implements LFXTransportManagerListener {
         }
 
         if (LFXByteUtils.isByteArrayEmpty(nextAvailableTagField.tagData)) {
-            LFXLog.e(TAG, "Unable to create tag " + tag + " in site " + siteID.getStringValue() + ", no available tag slots");
+            if (LFXLog.isErrorEnabled()) LFXLog.e(TAG, "Unable to create tag " + tag + " in site " + siteID.getStringValue() + ", no available tag slots");
         } else {
-            LFXLog.e(TAG, "Creating tag " + tag + " in site " + siteID.getStringValue() + " with tagField " + LFXByteUtils.byteArrayToHexString(nextAvailableTagField.tagData));
+            if (LFXLog.isErrorEnabled()) LFXLog.e(TAG, "Creating tag " + tag + " in site " + siteID.getStringValue() + " with tagField " + LFXByteUtils.byteArrayToHexString(nextAvailableTagField.tagData));
             LFXMessage setTagLabels = LFXMessage.messageWithTypeAndPath(Type.LX_PROTOCOL_DEVICE_SET_TAG_LABELS, LFXBinaryPath.getBroadcastBinaryPathWithSiteID(siteID));
             Object padding = new Object();
             UInt64 tags = new UInt64(nextAvailableTagField.tagData);

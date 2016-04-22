@@ -412,7 +412,7 @@ public class LxProtocolWifi {
             interfacetype.printValue("interfacetype");            // Field: interfacetype - Structle::Uint8 byte offset: 22
             status.printValue("status");            // Field: status - Structle::Uint8 byte offset: 22
             ipv4.printValue("ipv4");            // Field: ipv4 - Structle::Uint32 byte offset: 22
-            LFXLog.d(TAG, "Byte Array Print not currently supported");
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "Byte Array Print not currently supported");
         }
 
         public static void loadMessageDataWithPayloadAtOffset(byte[] messageData, int offset
@@ -770,8 +770,8 @@ public class LxProtocolWifi {
 
         public void printMessageData() {
             interfacetype.printValue("interfacetype");            // Field: interfacetype - Structle::Uint8 byte offset: 98
-            LFXLog.d(TAG, ssid);            // Field: ssid - Structle::String byte offset: 98
-            LFXLog.d(TAG, pass);            // Field: pass - Structle::String byte offset: 98
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, ssid);            // Field: ssid - Structle::String byte offset: 98
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, pass);            // Field: pass - Structle::String byte offset: 98
             security.printValue("security");            // Field: security - Structle::Uint8 byte offset: 98
         }
 
@@ -1070,7 +1070,7 @@ public class LxProtocolWifi {
 
         public void printMessageData() {
             interfacetype.printValue("interfacetype");            // Field: interfacetype - Structle::Uint8 byte offset: 38
-            LFXLog.d(TAG, ssid);            // Field: ssid - Structle::String byte offset: 38
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, ssid);            // Field: ssid - Structle::String byte offset: 38
             security.printValue("security");            // Field: security - Structle::Uint8 byte offset: 38
             strength.printValue("strength");                // Field: strength - Structle::Int16 byte offset: 38
             channel.printValue("channel");            // Field: channel - Structle::Uint16 byte offset: 38

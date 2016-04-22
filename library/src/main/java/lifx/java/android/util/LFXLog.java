@@ -76,4 +76,12 @@ public class LFXLog {
     public static void setDebugLogging(boolean debug) {
         LFXLog.debug = debug;
     }
+
+    public static void setAllLogging(boolean value) {
+        info = value;
+        error = value;
+        warning = value;
+        verbose = value;
+        debug = value;
+    }
 }
