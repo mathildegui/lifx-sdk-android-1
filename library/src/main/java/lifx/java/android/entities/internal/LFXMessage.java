@@ -417,6 +417,7 @@ public class LFXMessage {
         writeSizeToMessage((short) data.length, data);
         writeProtocolToMessage((short) protocol, data);
         writeIsAddressableToMessage(true, data);
+        data[22] = 1; // Request response
         writeAtTimeToMessage(atTime, data);
         writeTypeToMessage(messageType, data);
         if(path!=null && path.getSiteID()!=null) {
