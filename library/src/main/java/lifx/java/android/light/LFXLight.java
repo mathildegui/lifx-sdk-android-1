@@ -161,6 +161,7 @@ public class LFXLight extends LFXLightTarget {
             setMostRecentMessageTimestamp(System.currentTimeMillis());
         }
 
+        // Don't update the lights from the messages, only from the callbacks
         switch (message.getType()) {
             case LX_PROTOCOL_LIGHT_SET: {
                 LxProtocolLight.Set payload = (LxProtocolLight.Set) message.getPayload();
@@ -184,11 +185,11 @@ public class LFXLight extends LFXLightTarget {
                 labelDidChangeTo(payload.getLabel());
                 break;
             }
-            case LX_PROTOCOL_DEVICE_SET_POWER: {
-                LxProtocolDevice.SetPower payload = (LxProtocolDevice.SetPower) message.getPayload();
-                powerDidChangeTo(LFXBinaryTypes.getLFXPowerStateFromLFXProtocolPowerLevel(payload.getLevel()));
-                break;
-            }
+//            case LX_PROTOCOL_DEVICE_SET_POWER: {
+//                LxProtocolDevice.SetPower payload = (LxProtocolDevice.SetPower) message.getPayload();
+//                powerDidChangeTo(LFXBinaryTypes.getLFXPowerStateFromLFXProtocolPowerLevel(payload.getLevel()));
+//                break;
+//            }
             case LX_PROTOCOL_DEVICE_STATE_POWER: {
                 LxProtocolDevice.StatePower payload = (LxProtocolDevice.StatePower) message.getPayload();
                 powerDidChangeTo(LFXBinaryTypes.getLFXPowerStateFromLFXProtocolPowerLevel(payload.getLevel()));
