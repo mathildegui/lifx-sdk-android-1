@@ -31,6 +31,7 @@ import lifx.java.android.network_context.LFXNetworkContext;
 
 public class LFXLight extends LFXLightTarget {
     private final static String TAG=LFXLight.class.getSimpleName();
+    private boolean allowColorChangesFromCallback = true;
 
     public interface LFXLightListener {
         public void lightDidChangeLabel(LFXLight light, String label);
@@ -171,7 +172,9 @@ public class LFXLight extends LFXLightTarget {
             case LX_PROTOCOL_LIGHT_STATE: {
                 LxProtocolLight.State payload = (LxProtocolLight.State) message.getPayload();
                 labelDidChangeTo(payload.getLabel());
-                colorDidChangeTo(LFXBinaryTypes.getLFXHSBKColorFromLXProtocolLightHsbk(payload.getColor()));
+                if (allowColorChangesFromCallback) {
+                    colorDidChangeTo(LFXBinaryTypes.getLFXHSBKColorFromLXProtocolLightHsbk(payload.getColor()));
+                }
                 powerDidChangeTo(LFXBinaryTypes.getLFXPowerStateFromLFXProtocolPowerLevel(payload.getPower()));
                 break;
             }
@@ -245,5 +248,13 @@ public class LFXLight extends LFXLightTarget {
 
     public void removeLightListener(LFXLightListener listener) {
         listeners.remove(listener);
+    }
+
+    public boolean isAllowColorChangesFromCallback() {
+        return allowColorChangesFromCallback;
+    }
+
+    public void setAllowColorChangesFromCallback(boolean value) {
+        this.allowColorChangesFromCallback = value;
     }
 }
