@@ -33,7 +33,7 @@ And in your module's `build.gradle`:
 ```groovy
 dependencies {
    ...
-   compile 'com.github.getsenic:lifx-sdk-android:v0.5.6"
+   compile 'com.github.getsenic:lifx-sdk-android:0.5.7"
 }
 ```
 
