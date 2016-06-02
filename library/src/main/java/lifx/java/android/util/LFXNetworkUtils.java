@@ -121,18 +121,23 @@ public class LFXNetworkUtils {
         }
 
         WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-        DhcpInfo dhcp = wifi.getDhcpInfo();
 
-        int broadcast = (dhcp.ipAddress & dhcp.netmask) | ~dhcp.netmask;
-        byte[] quads = new byte[4];
-        for (int k = 0; k < 4; k++)
-            quads[k] = (byte) (broadcast >> (k * 8));
-        try {
-            sBroadcastAddress = InetAddress.getByAddress(quads).getHostAddress();
-            sBroadcastAddressExpires = System.currentTimeMillis() + EXPIRE_TIME;
-            return sBroadcastAddress;
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
+        if (wifi != null) {
+            DhcpInfo dhcp = wifi.getDhcpInfo();
+
+            if (dhcp != null) {
+                int broadcast = (dhcp.ipAddress & dhcp.netmask) | ~dhcp.netmask;
+                byte[] quads = new byte[4];
+                for (int k = 0; k < 4; k++)
+                    quads[k] = (byte) (broadcast >> (k * 8));
+                try {
+                    sBroadcastAddress = InetAddress.getByAddress(quads).getHostAddress();
+                    sBroadcastAddressExpires = System.currentTimeMillis() + EXPIRE_TIME;
+                    return sBroadcastAddress;
+                } catch (UnknownHostException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
         sBroadcastAddress = "255.255.255.255";
