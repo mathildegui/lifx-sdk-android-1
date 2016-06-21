@@ -162,7 +162,7 @@ public class LFXGatewayDiscoveryController {
         }
 
         if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "configureTimerForDiscoveryMode() - Mode="+discoveryMode+" Timer Period: " + duration);
-        discoveryTimer = LFXTimerUtils.getTimerTaskWithPeriod(getDiscoverTimerTask(), duration, false, "DisoveryTimer");
+        discoveryTimer = LFXTimerUtils.getTimerTaskWithPeriod(getDiscoverTimerTask(), duration, false, "DiscoveryTimer");
     }
 
     public void discoveryTimerDidFire() {
@@ -175,7 +175,7 @@ public class LFXGatewayDiscoveryController {
         if (discoveryTimer != null) {
             discoveryTimer.cancel();
             discoveryTimer.purge();
-            discoveryTimer=null;
+            discoveryTimer = null;
         }
         ended = true;
     }
