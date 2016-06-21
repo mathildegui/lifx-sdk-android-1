@@ -90,7 +90,7 @@ public class LFXLANTransportManager extends LFXTransportManager implements LFXGa
 
     public synchronized void setupBroadcastUDPConnection() {
         if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "setupBroadcastUDPConnection()");
-        if(broadcastUDPConnection!=null) {
+        if (broadcastUDPConnection != null) {
             broadcastUDPConnection.disconnect();
             broadcastUDPConnection.setListener(null);
         }
@@ -100,7 +100,7 @@ public class LFXLANTransportManager extends LFXTransportManager implements LFXGa
 
     public synchronized void setupPeerToPeerUDPConnection() {
         if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "setupPeerToPeerUDPConnection()");
-        if(peerToPeerUDPConnection!=null) {
+        if (peerToPeerUDPConnection != null) {
             peerToPeerUDPConnection.disconnect();
             peerToPeerUDPConnection.setListener(null);
         }
@@ -280,7 +280,7 @@ public class LFXLANTransportManager extends LFXTransportManager implements LFXGa
         if (connection == broadcastUDPConnection) {
             broadcastUDPConnection.disconnect();
             broadcastUDPConnection.setListener(null);
-            broadcastUDPConnection=null;
+            broadcastUDPConnection = null;
 
             if (enabled) {
                 Runnable task = new Runnable() {
