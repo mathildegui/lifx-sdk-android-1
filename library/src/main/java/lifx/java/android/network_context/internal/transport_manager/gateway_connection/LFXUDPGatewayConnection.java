@@ -130,10 +130,19 @@ public class LFXUDPGatewayConnection extends LFXGatewayConnection implements Soc
     }
 
     public void sendMessage(LFXMessage message) {
+        if (message == null) {
+            return;
+        }
+
         LinkedList<LFXMessage> outboxAsLinkedList = (LinkedList<LFXMessage>) messageOutbox;
 
         for (int outboxIndex = 0; outboxIndex < outboxAsLinkedList.size(); outboxIndex++) {
-            if (newMessageMakesQueuedMessageRedundant(message, outboxAsLinkedList.get(outboxIndex))) {
+            if (outboxAsLinkedList.get(outboxIndex) == null) {
+                outboxAsLinkedList.remove(outboxIndex);
+                outboxIndex--;
+                continue;
+            }
+            else if (newMessageMakesQueuedMessageRedundant(message, outboxAsLinkedList.get(outboxIndex))) {
                 outboxAsLinkedList.remove(outboxIndex);
                 outboxAsLinkedList.add(outboxIndex, message);
                 logMessageOutboxSize();
