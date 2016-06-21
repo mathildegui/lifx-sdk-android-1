@@ -76,6 +76,10 @@ public class LFXLANTransportManager extends LFXTransportManager implements LFXGa
     public void connect() {
         enabled = true;
 
+        if (gatewayDiscoveryController != null) {
+            gatewayDiscoveryController.shutDown();
+        }
+
         gatewayDiscoveryController = LFXGatewayDiscoveryController.getGatewayDiscoveryControllerWithLANTransportManager(this, this);
         gatewayConnections = new HashMap<LFXGatewayDescriptor, LFXGatewayConnection>();
 
