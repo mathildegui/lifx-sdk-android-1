@@ -27,8 +27,18 @@ public class LFXGatewayDiscoveryController {
     private final static String TAG = LFXGatewayDiscoveryController.class.getSimpleName();
 
     public enum LFXGatewayDiscoveryMode {
-        NORMAL,                // 30 seconds
-        ACTIVELY_SEARCHING,    // 1 second
+        NORMAL(30),                // 30 seconds
+        ACTIVELY_SEARCHING(5);    // 5 seconds
+
+        private int intervalInSeconds;
+
+        LFXGatewayDiscoveryMode(int intervalInSeconds) {
+            this.intervalInSeconds = intervalInSeconds;
+        }
+
+        public int getIntervalInSeconds() {
+            return intervalInSeconds;
+        }
     }
 
     ;
@@ -144,15 +154,7 @@ public class LFXGatewayDiscoveryController {
     }
 
     public void configureTimerForDiscoveryMode(LFXGatewayDiscoveryMode discoveryMode) {
-        long duration = 1000;
-        switch (discoveryMode) {
-            case NORMAL:
-                duration = 30000;
-                break;
-            case ACTIVELY_SEARCHING:
-                duration = 1000;
-                break;
-        }
+        long duration = discoveryMode.getIntervalInSeconds() * 1000;
 
         if (discoveryTimer != null) {
             discoveryTimer.cancel();
