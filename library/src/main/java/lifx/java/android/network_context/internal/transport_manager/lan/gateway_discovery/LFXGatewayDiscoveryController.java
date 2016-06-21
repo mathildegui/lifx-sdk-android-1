@@ -171,7 +171,7 @@ public class LFXGatewayDiscoveryController {
         }
     }
 
-    public void shutDown() {
+    public synchronized void shutDown() {
         if (discoveryTimer != null) {
             discoveryTimer.cancel();
             discoveryTimer.purge();
