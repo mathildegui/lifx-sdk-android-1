@@ -279,12 +279,12 @@ public class LFXUDPGatewayConnection extends LFXGatewayConnection implements Soc
     @Override
     public synchronized void disconnect() {
         socket.close();
-        if(heartbeatTimer!=null) {
+        if (heartbeatTimer != null) {
             heartbeatTimer.cancel();
             heartbeatTimer.purge();
             heartbeatTimer = null;
         }
-        if(outboxTimer!=null) {
+        if (outboxTimer != null) {
             outboxTimer.cancel();
             outboxTimer.purge();
             outboxTimer = null;
@@ -292,7 +292,7 @@ public class LFXUDPGatewayConnection extends LFXGatewayConnection implements Soc
         if (idleTimeoutTimer != null) {
             idleTimeoutTimer.cancel();
             idleTimeoutTimer.purge();
-            idleTimeoutTimer=null;
+            idleTimeoutTimer = null;
         }
     }
 
