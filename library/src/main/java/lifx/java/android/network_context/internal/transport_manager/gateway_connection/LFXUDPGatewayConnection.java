@@ -277,7 +277,7 @@ public class LFXUDPGatewayConnection extends LFXGatewayConnection implements Soc
     }
 
     @Override
-    public void disconnect() {
+    public synchronized void disconnect() {
         socket.close();
         if(heartbeatTimer!=null) {
             heartbeatTimer.cancel();
