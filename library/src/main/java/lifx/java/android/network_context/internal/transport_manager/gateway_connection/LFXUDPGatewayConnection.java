@@ -13,9 +13,10 @@ import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import lifx.java.android.constant.LFXSDKConstants;
 import lifx.java.android.entities.internal.LFXGatewayDescriptor;
@@ -33,7 +34,7 @@ import lifx.java.android.util.LFXTimerUtils;
 public class LFXUDPGatewayConnection extends LFXGatewayConnection implements SocketMessageListener, SocketStateListener {
     private final static String TAG = LFXUDPGatewayConnection.class.getSimpleName();
 
-    private Queue<LFXMessage> messageOutbox;
+    private BlockingQueue<LFXMessage> messageOutbox;
     private LFXSocketGeneric socket;
     private Timer outboxTimer;
     private Timer heartbeatTimer;
@@ -73,7 +74,7 @@ public class LFXUDPGatewayConnection extends LFXGatewayConnection implements Soc
     public LFXUDPGatewayConnection(LFXGatewayDescriptor gatewayDescriptor, LFXGatewayConnectionListener listener) {
         super(gatewayDescriptor, listener);
         setConnectionState(LFXGatewayConnectionState.NOT_CONNECTED);
-        messageOutbox = new LinkedList<LFXMessage>();
+        messageOutbox = new LinkedBlockingQueue<>();
         outboxTimer = LFXTimerUtils.getTimerTaskWithPeriod(getOutBoxTimerTask(), LFXSDKConstants.LFX_UDP_MESSAGE_SEND_RATE_LIMIT_INTERVAL, false, "SendRateLimitTimer");
         socket = new LFXSocketUDP();
         heartbeatTimer = LFXTimerUtils.getTimerTaskWithPeriod(getHeartbeatTimerTask(), LFXSDKConstants.LFX_UDP_HEARTBEAT_INTERVAL, false, "UDPHeartbeatTimer");
@@ -140,12 +141,17 @@ public class LFXUDPGatewayConnection extends LFXGatewayConnection implements Soc
             }
         }
 
-        messageOutbox.add(message);
+        messageOutbox.offer(message);
         logMessageOutboxSize();
     }
 
     private void sendNextMessageFromOutbox() {
-        LFXMessage nextMessage = messageOutbox.poll();
+        LFXMessage nextMessage;
+
+        try {
+            nextMessage = messageOutbox.take();
+        }
+        catch (InterruptedException ignore) { return; }
 
         if (nextMessage == null) {
             return;
