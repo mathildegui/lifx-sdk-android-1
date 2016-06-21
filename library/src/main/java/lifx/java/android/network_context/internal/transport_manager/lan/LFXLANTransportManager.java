@@ -88,7 +88,7 @@ public class LFXLANTransportManager extends LFXTransportManager implements LFXGa
         gatewayDiscoveryController.sendGatewayDiscoveryMessage();
     }
 
-    public void setupBroadcastUDPConnection() {
+    public synchronized void setupBroadcastUDPConnection() {
         if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "setupBroadcastUDPConnection()");
         if(broadcastUDPConnection!=null) {
             broadcastUDPConnection.disconnect();
@@ -98,7 +98,7 @@ public class LFXLANTransportManager extends LFXTransportManager implements LFXGa
         broadcastUDPConnection.connect();
     }
 
-    public void setupPeerToPeerUDPConnection() {
+    public synchronized void setupPeerToPeerUDPConnection() {
         if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "setupPeerToPeerUDPConnection()");
         if(peerToPeerUDPConnection!=null) {
             peerToPeerUDPConnection.disconnect();
