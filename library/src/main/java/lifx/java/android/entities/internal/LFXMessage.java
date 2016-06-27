@@ -196,7 +196,8 @@ public class LFXMessage {
     }
 
     public static LFXMessage messageWithMessageData(byte[] data) {
-        if (data == null || data.length == 0 || getTypeFromMessageData(data) == null) {
+        // Theoretically the minimum message length should be 36 but I think the last 2 bytes aren't used
+        if (data == null || data.length < 34 || getTypeFromMessageData(data) == null) {
             if (LFXLog.isWarningEnabled()) LFXLog.w(TAG, "Warning: invalid type: " + StructleTypes.getShortValue(data[32], data[33]));
             return null;
         }
