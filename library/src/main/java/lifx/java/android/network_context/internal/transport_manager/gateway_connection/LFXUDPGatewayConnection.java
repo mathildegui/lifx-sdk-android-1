@@ -17,6 +17,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 import lifx.java.android.constant.LFXSDKConstants;
 import lifx.java.android.entities.internal.LFXGatewayDescriptor;
@@ -150,7 +151,7 @@ public class LFXUDPGatewayConnection extends LFXGatewayConnection implements Soc
         LFXMessage nextMessage;
 
         try {
-            nextMessage = messageOutbox.take();
+            nextMessage = messageOutbox.poll(0, TimeUnit.MILLISECONDS);
         }
         catch (InterruptedException ignore) { return; }
 
