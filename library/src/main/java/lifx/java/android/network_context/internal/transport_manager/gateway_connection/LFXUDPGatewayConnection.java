@@ -139,6 +139,7 @@ public class LFXUDPGatewayConnection extends LFXGatewayConnection implements Soc
             if (item != null && newMessageMakesQueuedMessageRedundant(message, item)) {
                 messageOutbox.remove(item);
                 messageOutbox.offer(message);
+                logMessageOutboxSize();
                 return;
             }
         }
