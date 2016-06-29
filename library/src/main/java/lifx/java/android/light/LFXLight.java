@@ -28,6 +28,7 @@ import lifx.java.android.entities.internal.structle.StructleTypes.UInt16;
 import lifx.java.android.entities.internal.structle.StructleTypes.UInt32;
 import lifx.java.android.entities.internal.structle.StructleTypes.UInt8;
 import lifx.java.android.network_context.LFXNetworkContext;
+import lifx.java.android.util.LFXLog;
 
 public class LFXLight extends LFXLightTarget {
     private final static String TAG=LFXLight.class.getSimpleName();
@@ -166,36 +167,66 @@ public class LFXLight extends LFXLightTarget {
         switch (message.getType()) {
             case LX_PROTOCOL_LIGHT_SET: {
                 LxProtocolLight.Set payload = (LxProtocolLight.Set) message.getPayload();
-                colorDidChangeTo(LFXBinaryTypes.getLFXHSBKColorFromLXProtocolLightHsbk(payload.getColor()));
+                if (payload != null) {
+                    colorDidChangeTo(LFXBinaryTypes.getLFXHSBKColorFromLXProtocolLightHsbk(payload.getColor()));
+                }
+                else {
+                    if (LFXLog.isErrorEnabled()) LFXLog.e(TAG, "Payload from LX_PROTOCOL_LIGHT_SET is null");
+                }
                 break;
             }
             case LX_PROTOCOL_LIGHT_STATE: {
                 LxProtocolLight.State payload = (LxProtocolLight.State) message.getPayload();
-                labelDidChangeTo(payload.getLabel());
-                if (allowColorChangesFromCallback) {
-                    colorDidChangeTo(LFXBinaryTypes.getLFXHSBKColorFromLXProtocolLightHsbk(payload.getColor()));
+                if (payload != null) {
+                    labelDidChangeTo(payload.getLabel());
+                    if (allowColorChangesFromCallback) {
+                        colorDidChangeTo(LFXBinaryTypes.getLFXHSBKColorFromLXProtocolLightHsbk(payload.getColor()));
+                    }
+                    powerDidChangeTo(LFXBinaryTypes.getLFXPowerStateFromLFXProtocolPowerLevel(payload.getPower()));
                 }
-                powerDidChangeTo(LFXBinaryTypes.getLFXPowerStateFromLFXProtocolPowerLevel(payload.getPower()));
+                else {
+                    if (LFXLog.isErrorEnabled()) LFXLog.e(TAG, "Payload from LX_PROTOCOL_LIGHT_STATE is null");
+                }
                 break;
             }
             case LX_PROTOCOL_DEVICE_SET_LABEL: {
                 LxProtocolDevice.SetLabel payload = (LxProtocolDevice.SetLabel) message.getPayload();
-                labelDidChangeTo(payload.getLabel());
+                if (payload != null) {
+                    labelDidChangeTo(payload.getLabel());
+                }
+                else {
+                    if (LFXLog.isErrorEnabled()) LFXLog.e(TAG, "Payload from LX_PROTOCOL_DEVICE_SET_LABEL is null");
+                }
                 break;
             }
             case LX_PROTOCOL_DEVICE_STATE_LABEL: {
                 LxProtocolDevice.StateLabel payload = (LxProtocolDevice.StateLabel) message.getPayload();
-                labelDidChangeTo(payload.getLabel());
+                if (payload != null) {
+                    labelDidChangeTo(payload.getLabel());
+                }
+                else {
+                    if (LFXLog.isErrorEnabled()) LFXLog.e(TAG, "Payload from LX_PROTOCOL_DEVICE_STATE_LABEL is null");
+                }
                 break;
             }
-//            case LX_PROTOCOL_DEVICE_SET_POWER: {
-//                LxProtocolDevice.SetPower payload = (LxProtocolDevice.SetPower) message.getPayload();
-//                powerDidChangeTo(LFXBinaryTypes.getLFXPowerStateFromLFXProtocolPowerLevel(payload.getLevel()));
-//                break;
-//            }
+            case LX_PROTOCOL_DEVICE_SET_POWER: {
+                LxProtocolDevice.SetPower payload = (LxProtocolDevice.SetPower) message.getPayload();
+                if (payload != null) {
+                    powerDidChangeTo(LFXBinaryTypes.getLFXPowerStateFromLFXProtocolPowerLevel(payload.getLevel()));
+                }
+                else {
+                    if (LFXLog.isErrorEnabled()) LFXLog.e(TAG, "Payload from LX_PROTOCOL_DEVICE_SET_POWER is null");
+                }
+                break;
+            }
             case LX_PROTOCOL_DEVICE_STATE_POWER: {
                 LxProtocolDevice.StatePower payload = (LxProtocolDevice.StatePower) message.getPayload();
-                powerDidChangeTo(LFXBinaryTypes.getLFXPowerStateFromLFXProtocolPowerLevel(payload.getLevel()));
+                if (payload != null) {
+                    powerDidChangeTo(LFXBinaryTypes.getLFXPowerStateFromLFXProtocolPowerLevel(payload.getLevel()));
+                }
+                else {
+                    if (LFXLog.isErrorEnabled()) LFXLog.e(TAG, "Payload from LX_PROTOCOL_DEVICE_STATE_POWER is null");
+                }
                 break;
             }
             default:
