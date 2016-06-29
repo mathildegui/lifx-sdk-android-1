@@ -172,31 +172,31 @@ public class LFXUDPGatewayConnection extends LFXGatewayConnection implements Soc
     private HashMap<String, Integer> types = new HashMap<String, Integer>();
 
     public void logMessageOutboxSize() {
-        if (messageOutbox.size() > 10) {
+        if (messageOutbox.size() <= 10) {
+            return;
+        }
+
+        if (LFXLog.isWarningEnabled()) LFXLog.w(TAG, "logMessageOutboxSize() - UDP " + getGatewayDescriptor().getHost() + " Message Outbox backlog is " + messageOutbox.size());
+        if (LFXLog.isDebugEnabled()) {
             types.clear();
 
-            LinkedList<LFXMessage> outboxAsLinkedList = (LinkedList<LFXMessage>) messageOutbox;
+            for (LFXMessage item : messageOutbox) {
+                String key = item.getType().name();
+                Integer count = types.get(key);
 
-            for (int i = 0; i < messageOutbox.size(); i++) {
-                String key = outboxAsLinkedList.get(i).getType().name();
-                Integer bla = types.get(key);
-
-                if (bla == null) {
-                    bla = 0;
+                if (count == null) {
+                    count = 1;
+                }
+                else {
+                    count++;
                 }
 
-                bla = bla + 1;
-
-                types.put(key, bla);
+                types.put(key, count);
             }
 
-            if (LFXLog.isWarningEnabled()) LFXLog.w(TAG, "logMessageOutboxSize() - UDP " + getGatewayDescriptor().getHost() + " Message Outbox backlog is " + messageOutbox.size());
-            if (LFXLog.isDebugEnabled()) {
-                for (String aKey : types.keySet()) {
-                    LFXLog.d(TAG, "logMessageOutboxSize()" + aKey + ": " + types.get(aKey) + ", ");
-                }
+            for (String aKey : types.keySet()) {
+                LFXLog.d(TAG, "logMessageOutboxSize()" + aKey + ": " + types.get(aKey) + ", ");
             }
-
         }
     }
 
