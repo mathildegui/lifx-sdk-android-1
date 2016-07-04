@@ -41,7 +41,7 @@ public class LFXLANTransportManager extends LFXTransportManager implements LFXGa
 
     private boolean enabled = true;
 
-    public void disconnect() {
+    public synchronized void disconnect() {
         enabled = false;
 
         if (broadcastUDPConnection != null) {
@@ -73,7 +73,7 @@ public class LFXLANTransportManager extends LFXTransportManager implements LFXGa
         if (LFXLog.isDebugEnabled()) LFXLog.d(TAG, "LFXLANTransportManager() - Constructor");
     }
 
-    public void connect() {
+    public synchronized void connect() {
         enabled = true;
 
         if (gatewayDiscoveryController != null) {
@@ -280,7 +280,7 @@ public class LFXLANTransportManager extends LFXTransportManager implements LFXGa
         listener.transportManagerDidConnectToGateway(this, connection.getGatewayDescriptor());
     }
 
-    public void gatewayConnectionDidDisconnectWithError(LFXGatewayConnection connection, String error) {
+    public synchronized void gatewayConnectionDidDisconnectWithError(LFXGatewayConnection connection, String error) {
         if (connection == broadcastUDPConnection) {
             broadcastUDPConnection.disconnect();
             broadcastUDPConnection.setListener(null);
