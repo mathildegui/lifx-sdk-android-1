@@ -76,6 +76,8 @@ public class LxProtocol {
         LX_PROTOCOL_DEVICE_SET_FACTORY_TEST_MODE,                // LX_PROTOCOL_DEVICE_SET_FACTORY_TEST_MODE = 39
         LX_PROTOCOL_DEVICE_DISABLE_FACTORY_TEST_MODE,                // LX_PROTOCOL_DEVICE_DISABLE_FACTORY_TEST_MODE = 40
         LX_PROTOCOL_DEVICE_STATE_FACTORY_TEST_MODE,                // LX_PROTOCOL_DEVICE_STATE_FACTORY_TEST_MODE = 41
+        LX_PROTOCOL_DEVICE_GET_GROUP,                // LX_PROTOCOL_DEVICE_GET_GROUP = 51
+        LX_PROTOCOL_DEVICE_STATE_GROUP,                // LX_PROTOCOL_DEVICE_STATE_GROUP = 53
         LX_PROTOCOL_DEVICE_ECHO_REQUEST,                 // LX_PROTOCOL_DEVICE_STATE_FACTORY_TEST_MODE = 58
         LX_PROTOCOL_DEVICE_ECHO_RESPONSE,                 // LX_PROTOCOL_DEVICE_STATE_FACTORY_TEST_MODE = 59
         LX_PROTOCOL_LIGHT_GET,                // LX_PROTOCOL_LIGHT_GET = 101
@@ -202,6 +204,10 @@ public class LxProtocol {
         typeMap.put(41, Type.LX_PROTOCOL_DEVICE_STATE_FACTORY_TEST_MODE);
         typeValueMap.put(Type.LX_PROTOCOL_DEVICE_ECHO_REQUEST, 58);
         typeMap.put(58, Type.LX_PROTOCOL_DEVICE_ECHO_REQUEST);
+        typeValueMap.put(Type.LX_PROTOCOL_DEVICE_GET_GROUP, 51);
+        typeMap.put(51, Type.LX_PROTOCOL_DEVICE_GET_GROUP);
+        typeValueMap.put(Type.LX_PROTOCOL_DEVICE_STATE_GROUP, 53);
+        typeMap.put(53, Type.LX_PROTOCOL_DEVICE_STATE_GROUP);
         typeValueMap.put(Type.LX_PROTOCOL_DEVICE_ECHO_RESPONSE, 59);
         typeMap.put(59, Type.LX_PROTOCOL_DEVICE_ECHO_RESPONSE);
         typeValueMap.put(Type.LX_PROTOCOL_LIGHT_GET, 101);
@@ -305,6 +311,10 @@ public class LxProtocol {
         typeClassMap.put(Type.LX_PROTOCOL_DEVICE_STATE_FACTORY_TEST_MODE, LxProtocolDevice.StateFactoryTestMode.class);
         //typeClassMap.put(LX_PROTOCOL_DEVICE_ECHO_REQUEST, null);
         //typeClassMap.put(LX_PROTOCOL_DEVICE_ECHO_RESPONSE, null);
+
+        typeClassMap.put(Type.LX_PROTOCOL_DEVICE_STATE_GROUP, LxProtocolDevice.StateGroup.class);
+        typeClassMap.put(Type.LX_PROTOCOL_DEVICE_GET_GROUP, LxProtocolDevice.GetGroup.class);
+
         typeClassMap.put(Type.LX_PROTOCOL_LIGHT_GET, LxProtocolLight.Get.class);
         typeClassMap.put(Type.LX_PROTOCOL_LIGHT_SET, LxProtocolLight.Set.class);
         typeClassMap.put(Type.LX_PROTOCOL_LIGHT_SET_WAVEFORM, LxProtocolLight.SetWaveform.class);

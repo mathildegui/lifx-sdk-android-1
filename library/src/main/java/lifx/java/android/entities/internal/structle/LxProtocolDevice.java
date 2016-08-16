@@ -62,7 +62,7 @@ public class LxProtocolDevice {
         serviceMap.put(5, Service.LX_PROTOCOL_DEVICE_SERVICE_TCP);
     }
 
-    ;
+
 
     public static class SetSite extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::SetSite 
     {
@@ -3448,6 +3448,323 @@ public class LxProtocolDevice {
             return PAYLOAD_SIZE;
         }
     }
+
+
+
+    public static class GetGroup extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::GetGroup
+    {
+
+        private static final int PAYLOAD_SIZE = 0;
+
+        public GetGroup(byte[] bytes) {
+            this(bytes, 0);
+        }
+
+        public GetGroup(byte[] bytes, int initialOffset) {
+        }
+
+        public GetGroup(Object padding) {
+        }
+
+
+        public void printMessageData() {
+        }
+
+        public static void loadMessageDataWithPayloadAtOffset(byte[] messageData, int offset) {
+            byte[] memberData;        // = name.getBytes();
+
+        }
+
+        public static void loadMessageDataWithPayloadAtDefaultOffset(byte[] messageData) {
+            int offset = PAYLOAD_OFFSET;
+
+            loadMessageDataWithPayloadAtOffset(messageData, offset
+            );
+        }
+
+        public byte[] getBytes() {
+            int offset = 0;
+
+            byte[] bytes = new byte[getPayloadSize()];
+
+            byte[] memberData;
+
+
+            return bytes;
+        }
+
+        public static int getPayloadSize() {
+            return PAYLOAD_SIZE;
+        }
+    }
+
+
+    public static class StateGroup extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::StateGroup
+    {
+        // Fields: group, label, updated_at;
+        private UInt8 group;            // Field: group - Structle::Uint64 byte offset: 8
+        private String label;            // Field: label - Structle::String byte offset: 40
+        private UInt64 updated_at;       // Field: updated_at - Structle::Uint64 byte offset: 48
+
+        private static final int PAYLOAD_SIZE = 48;
+
+        public StateGroup(byte[] bytes) {
+            this(bytes, 0);
+        }
+
+        public StateGroup(byte[] bytes, int initialOffset) {
+            /*byte[] member0Data = new byte[8];
+            member0Data[0] = bytes[initialOffset + 0];
+            member0Data[1] = bytes[initialOffset + 1];
+            member0Data[2] = bytes[initialOffset + 2];
+            member0Data[3] = bytes[initialOffset + 3];
+            member0Data[4] = bytes[initialOffset + 4];
+            member0Data[5] = bytes[initialOffset + 5];
+            member0Data[6] = bytes[initialOffset + 6];
+            member0Data[7] = bytes[initialOffset + 7];*/
+
+            byte[] member0Data = new byte[1];
+            member0Data[0] = bytes[initialOffset];
+
+            group = new UInt8(member0Data);
+
+            byte[] member1Data = new byte[32];
+            member1Data[0] = bytes[initialOffset + 1];
+            member1Data[1] = bytes[initialOffset + 2];
+            member1Data[2] = bytes[initialOffset + 3];
+            member1Data[3] = bytes[initialOffset + 4];
+            member1Data[4] = bytes[initialOffset + 5];
+            member1Data[5] = bytes[initialOffset + 6];
+            member1Data[6] = bytes[initialOffset + 7];
+            member1Data[7] = bytes[initialOffset + 8];
+            member1Data[8] = bytes[initialOffset + 9];
+            member1Data[9] = bytes[initialOffset + 10];
+            member1Data[10] = bytes[initialOffset + 11];
+            member1Data[11] = bytes[initialOffset + 12];
+            member1Data[12] = bytes[initialOffset + 13];
+            member1Data[13] = bytes[initialOffset + 14];
+            member1Data[14] = bytes[initialOffset + 15];
+            member1Data[15] = bytes[initialOffset + 16];
+            member1Data[16] = bytes[initialOffset + 17];
+            member1Data[17] = bytes[initialOffset + 18];
+            member1Data[18] = bytes[initialOffset + 19];
+            member1Data[19] = bytes[initialOffset + 20];
+            member1Data[20] = bytes[initialOffset + 21];
+            member1Data[21] = bytes[initialOffset + 22];
+            member1Data[22] = bytes[initialOffset + 23];
+            member1Data[23] = bytes[initialOffset + 24];
+            member1Data[24] = bytes[initialOffset + 25];
+            member1Data[25] = bytes[initialOffset + 26];
+            member1Data[26] = bytes[initialOffset + 27];
+            member1Data[27] = bytes[initialOffset + 28];
+            member1Data[28] = bytes[initialOffset + 29];
+            member1Data[29] = bytes[initialOffset + 30];
+            member1Data[30] = bytes[initialOffset + 31];
+            member1Data[31] = bytes[initialOffset + 32];
+
+            int endOfStringIndex;
+            byte[] subString;
+
+            endOfStringIndex = member1Data.length;
+
+            for (int i = 0; i < member1Data.length; i++) {
+                if (member1Data[i] == 0x00) {
+                    endOfStringIndex = i;
+                    break;
+                }
+            }
+
+            subString = new byte[endOfStringIndex];
+            for (int i = 0; i < endOfStringIndex; i++) {
+                subString[i] = member1Data[i];
+            }
+
+            label = new String(subString);
+
+
+            byte[] member2Data = new byte[8];
+            member2Data[0] = bytes[initialOffset + 33];
+            member2Data[1] = bytes[initialOffset + 34];
+            member2Data[2] = bytes[initialOffset + 35];
+            member2Data[3] = bytes[initialOffset + 36];
+            member2Data[4] = bytes[initialOffset + 37];
+            member2Data[5] = bytes[initialOffset + 38];
+            member2Data[6] = bytes[initialOffset + 39];
+            member2Data[7] = bytes[initialOffset + 40];
+
+
+            updated_at = new UInt64(member2Data);
+
+        }
+
+        public StateGroup(Object padding
+                , UInt8 group
+                , String label
+                , UInt64 updated_at
+        ) {
+            this.group = group;
+            this.label = label;
+            this.updated_at = updated_at;
+        }
+
+        public UInt8 getGroup() {
+            return group;
+        }
+
+        public String getLabel() {
+            return label;
+        }
+
+        public UInt64 getUpdated_at() {
+            return updated_at;
+        }
+
+        public void printMessageData() {
+            group.printValue("group");            // Field: time - Structle::Uint64 byte offset: 24
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG,"printMessageData() - "+label);  // Field: uptime - Structle::Uint64 byte offset: 24
+            updated_at.printValue("updated_at");            // Field: downtime - Structle::Uint64 byte offset: 24
+        }
+
+        public static void loadMessageDataWithPayloadAtOffset(byte[] messageData, int offset
+                , UInt8 group
+                , String label
+                , UInt64 updated_at
+        ) {
+            byte[] memberData;        // = name.getBytes();
+
+
+            memberData = group.getBytes();
+
+            for (int i = 0; i < (memberData.length); i++) {
+                messageData[(offset + i)] = memberData[i];
+            }
+
+            offset += memberData.length;
+
+
+            char[] labelchars = label.toCharArray();
+            //byte[] labelBytes = new byte[labelchars.length];
+            byte[] labelBytes = new byte[32];
+
+            for (int i = 0; i < 32; i++) {
+                labelBytes[i] = 0x00;
+            }
+
+            for (int i = 0; i < labelchars.length; i++) {
+                labelBytes[i] = (byte) labelchars[i];
+            }
+
+            memberData = labelBytes;
+
+
+            for (int i = 0; i < (memberData.length); i++) {
+                messageData[(offset + i)] = memberData[i];
+            }
+
+            offset += memberData.length;
+
+
+            memberData = updated_at.getBytes();
+
+            for (int i = 0; i < (memberData.length); i++) {
+                messageData[(offset + i)] = memberData[i];
+            }
+
+            offset += memberData.length;
+        }
+
+        public static void loadMessageDataWithPayloadAtDefaultOffset(byte[] messageData
+                , UInt8 group
+                , String label
+                , UInt64 updated_at
+        ) {
+            int offset = PAYLOAD_OFFSET;
+
+            loadMessageDataWithPayloadAtOffset(messageData, offset
+                    , group
+                    , label
+                    , updated_at
+            );
+        }
+
+
+        public byte[] getBytes() {
+            int offset = 0;
+
+            byte[] bytes = new byte[getPayloadSize()];
+
+            byte[] memberData;
+
+            // = name.getBytes();
+            memberData = group.getBytes();
+
+            for (int i = 0; i < (memberData.length); i++) {
+                bytes[(offset + i)] = memberData[i];
+            }
+
+            offset += memberData.length;
+            // = name.getBytes();
+            char[] labelchars = label.toCharArray();
+            //byte[] labelBytes = new byte[labelchars.length];
+            byte[] labelBytes = new byte[32];
+
+            for (int i = 0; i < 32; i++) {
+                labelBytes[i] = 0x00;
+            }
+
+            for (int i = 0; i < labelchars.length; i++) {
+                labelBytes[i] = (byte) labelchars[i];
+            }
+
+            memberData = labelBytes;
+
+
+            for (int i = 0; i < (memberData.length); i++) {
+                bytes[(offset + i)] = memberData[i];
+            }
+
+            offset += memberData.length;
+
+
+            // = name.getBytes();
+            memberData = updated_at.getBytes();
+
+            for (int i = 0; i < (memberData.length); i++) {
+                bytes[(offset + i)] = memberData[i];
+            }
+
+            offset += memberData.length;
+
+            return bytes;
+        }
+
+        public static int getPayloadSize() {
+            return PAYLOAD_SIZE;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public static class GetMcuRailVoltage extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::GetMcuRailVoltage 
     {
