@@ -84,4 +84,5 @@ public class LFXAllLightsCollection extends LFXLightCollection {
     @Override
     public void handleMessage(LFXMessage message) {
     }
+
 }

@@ -40,6 +40,8 @@ public class LFXLight extends LFXLightTarget {
         public void lightDidChangeColor(LFXLight light, LFXHSBKColor color);
 
         public void lightDidChangePowerState(LFXLight light, LFXPowerState powerState);
+
+        public void lightDidChangeGroup(LFXLight light, String group);
     }
 
     private LFXNetworkContext networkContext;
@@ -141,6 +143,12 @@ public class LFXLight extends LFXLightTarget {
         }
     }
 
+    private void notifyListenerGroupDidChange(String group) {
+        for (LFXLightListener aListener : listeners) {
+            aListener.lightDidChangeGroup(this, group);
+        }
+    }
+
     public void setPowerState(LFXPowerState powerState) {
         LFXMessage setPower = LFXMessage.messageWithTypeAndTarget(Type.LX_PROTOCOL_DEVICE_SET_POWER, getTarget());
         Object padding = new Object();
@@ -229,6 +237,16 @@ public class LFXLight extends LFXLightTarget {
                 }
                 break;
             }
+            case LX_PROTOCOL_DEVICE_STATE_GROUP: {
+                LxProtocolDevice.StateGroup payload = (LxProtocolDevice.StateGroup) message.getPayload();
+                if (payload != null) {
+                    groupDidChangeTo(payload.getGroup());
+                }
+                else {
+                    if (LFXLog.isErrorEnabled()) LFXLog.e(TAG, "Payload from LX_PROTOCOL_DEVICE_STATE_GROUP is null");
+                }
+                break;
+            }
             default:
                 break;
         }
@@ -246,6 +264,13 @@ public class LFXLight extends LFXLightTarget {
             notifyListenersColorDidChange(color);
         }
         this.color = color;
+    }
+
+    public void groupDidChangeTo(String group) {
+        if(this.group==null || !this.group.equals(group)) {
+            notifyListenerGroupDidChange(group);
+        }
+        this.group = group;
     }
 
     public void powerDidChangeTo(LFXPowerState powerState) {

@@ -36,7 +36,7 @@ import lifx.java.android.util.LFXLog;
 @SuppressWarnings("unused")
 public class LxProtocolDevice {
     private final static String TAG=LxProtocolDevice.class.getSimpleName();
-    
+
     public enum Service                                    // Enum Lx::Protocol::Device::Service
     {
         LX_PROTOCOL_DEVICE_SERVICE_UDP,                // LX_PROTOCOL_DEVICE_SERVICE_UDP = 1
@@ -3502,18 +3502,18 @@ public class LxProtocolDevice {
     public static class StateGroup extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::StateGroup
     {
         // Fields: group, label, updated_at;
-        private UInt8 group;            // Field: group - Structle::Uint64 byte offset: 8
+        private String group;            // Field: group - Structle::Uint64 byte offset: 8
         private String label;            // Field: label - Structle::String byte offset: 40
         private UInt64 updated_at;       // Field: updated_at - Structle::Uint64 byte offset: 48
 
-        private static final int PAYLOAD_SIZE = 48;
+        private static final int PAYLOAD_SIZE = 56;
 
         public StateGroup(byte[] bytes) {
             this(bytes, 0);
         }
 
         public StateGroup(byte[] bytes, int initialOffset) {
-            /*byte[] member0Data = new byte[8];
+            byte[] member0Data = new byte[16];
             member0Data[0] = bytes[initialOffset + 0];
             member0Data[1] = bytes[initialOffset + 1];
             member0Data[2] = bytes[initialOffset + 2];
@@ -3521,46 +3521,73 @@ public class LxProtocolDevice {
             member0Data[4] = bytes[initialOffset + 4];
             member0Data[5] = bytes[initialOffset + 5];
             member0Data[6] = bytes[initialOffset + 6];
-            member0Data[7] = bytes[initialOffset + 7];*/
+            member0Data[7] = bytes[initialOffset + 7];
+            member0Data[0] = bytes[initialOffset + 8];
+            member0Data[1] = bytes[initialOffset + 9];
+            member0Data[2] = bytes[initialOffset + 10];
+            member0Data[3] = bytes[initialOffset + 11];
+            member0Data[4] = bytes[initialOffset + 12];
+            member0Data[5] = bytes[initialOffset + 13];
+            member0Data[6] = bytes[initialOffset + 14];
+            member0Data[7] = bytes[initialOffset + 15];
 
-            byte[] member0Data = new byte[1];
-            member0Data[0] = bytes[initialOffset];
+            /*byte[] member0Data = new byte[1];
+            member0Data[0] = bytes[initialOffset];*/
 
-            group = new UInt8(member0Data);
+            //group = new UInt8(member0Data);
+            int endOfStringIndex0;
+            byte[] subString0;
+
+            endOfStringIndex0 = member0Data.length;
+
+            for (int i = 0; i < member0Data.length; i++) {
+                if (member0Data[i] == 0x00) {
+                    endOfStringIndex0 = i;
+                    break;
+                }
+            }
+
+            subString0 = new byte[endOfStringIndex0];
+            for (int i = 0; i < endOfStringIndex0; i++) {
+                subString0[i] = member0Data[i];
+            }
+
+            group = new String(subString0);
+
 
             byte[] member1Data = new byte[32];
-            member1Data[0] = bytes[initialOffset + 1];
-            member1Data[1] = bytes[initialOffset + 2];
-            member1Data[2] = bytes[initialOffset + 3];
-            member1Data[3] = bytes[initialOffset + 4];
-            member1Data[4] = bytes[initialOffset + 5];
-            member1Data[5] = bytes[initialOffset + 6];
-            member1Data[6] = bytes[initialOffset + 7];
-            member1Data[7] = bytes[initialOffset + 8];
-            member1Data[8] = bytes[initialOffset + 9];
-            member1Data[9] = bytes[initialOffset + 10];
-            member1Data[10] = bytes[initialOffset + 11];
-            member1Data[11] = bytes[initialOffset + 12];
-            member1Data[12] = bytes[initialOffset + 13];
-            member1Data[13] = bytes[initialOffset + 14];
-            member1Data[14] = bytes[initialOffset + 15];
-            member1Data[15] = bytes[initialOffset + 16];
-            member1Data[16] = bytes[initialOffset + 17];
-            member1Data[17] = bytes[initialOffset + 18];
-            member1Data[18] = bytes[initialOffset + 19];
-            member1Data[19] = bytes[initialOffset + 20];
-            member1Data[20] = bytes[initialOffset + 21];
-            member1Data[21] = bytes[initialOffset + 22];
-            member1Data[22] = bytes[initialOffset + 23];
-            member1Data[23] = bytes[initialOffset + 24];
-            member1Data[24] = bytes[initialOffset + 25];
-            member1Data[25] = bytes[initialOffset + 26];
-            member1Data[26] = bytes[initialOffset + 27];
-            member1Data[27] = bytes[initialOffset + 28];
-            member1Data[28] = bytes[initialOffset + 29];
-            member1Data[29] = bytes[initialOffset + 30];
-            member1Data[30] = bytes[initialOffset + 31];
-            member1Data[31] = bytes[initialOffset + 32];
+            member1Data[0] = bytes[initialOffset + 16];
+            member1Data[1] = bytes[initialOffset + 17];
+            member1Data[2] = bytes[initialOffset + 18];
+            member1Data[3] = bytes[initialOffset + 19];
+            member1Data[4] = bytes[initialOffset + 20];
+            member1Data[5] = bytes[initialOffset + 21];
+            member1Data[6] = bytes[initialOffset + 22];
+            member1Data[7] = bytes[initialOffset + 23];
+            member1Data[8] = bytes[initialOffset + 24];
+            member1Data[9] = bytes[initialOffset + 25];
+            member1Data[10] = bytes[initialOffset + 26];
+            member1Data[11] = bytes[initialOffset + 27];
+            member1Data[12] = bytes[initialOffset + 28];
+            member1Data[13] = bytes[initialOffset + 29];
+            member1Data[14] = bytes[initialOffset + 30];
+            member1Data[15] = bytes[initialOffset + 31];
+            member1Data[16] = bytes[initialOffset + 32];
+            member1Data[17] = bytes[initialOffset + 33];
+            member1Data[18] = bytes[initialOffset + 34];
+            member1Data[19] = bytes[initialOffset + 35];
+            member1Data[20] = bytes[initialOffset + 36];
+            member1Data[21] = bytes[initialOffset + 37];
+            member1Data[22] = bytes[initialOffset + 38];
+            member1Data[23] = bytes[initialOffset + 39];
+            member1Data[24] = bytes[initialOffset + 40];
+            member1Data[25] = bytes[initialOffset + 41];
+            member1Data[26] = bytes[initialOffset + 42];
+            member1Data[27] = bytes[initialOffset + 43];
+            member1Data[28] = bytes[initialOffset + 44];
+            member1Data[29] = bytes[initialOffset + 45];
+            member1Data[30] = bytes[initialOffset + 46];
+            member1Data[31] = bytes[initialOffset + 47];
 
             int endOfStringIndex;
             byte[] subString;
@@ -3583,14 +3610,14 @@ public class LxProtocolDevice {
 
 
             byte[] member2Data = new byte[8];
-            member2Data[0] = bytes[initialOffset + 33];
-            member2Data[1] = bytes[initialOffset + 34];
-            member2Data[2] = bytes[initialOffset + 35];
-            member2Data[3] = bytes[initialOffset + 36];
-            member2Data[4] = bytes[initialOffset + 37];
-            member2Data[5] = bytes[initialOffset + 38];
-            member2Data[6] = bytes[initialOffset + 39];
-            member2Data[7] = bytes[initialOffset + 40];
+            member2Data[0] = bytes[initialOffset + 48];
+            member2Data[1] = bytes[initialOffset + 49];
+            member2Data[2] = bytes[initialOffset + 50];
+            member2Data[3] = bytes[initialOffset + 51];
+            member2Data[4] = bytes[initialOffset + 52];
+            member2Data[5] = bytes[initialOffset + 53];
+            member2Data[6] = bytes[initialOffset + 54];
+            member2Data[7] = bytes[initialOffset + 55];
 
 
             updated_at = new UInt64(member2Data);
@@ -3598,7 +3625,7 @@ public class LxProtocolDevice {
         }
 
         public StateGroup(Object padding
-                , UInt8 group
+                , String group
                 , String label
                 , UInt64 updated_at
         ) {
@@ -3607,7 +3634,7 @@ public class LxProtocolDevice {
             this.updated_at = updated_at;
         }
 
-        public UInt8 getGroup() {
+        public String getGroup() {
             return group;
         }
 
@@ -3620,20 +3647,43 @@ public class LxProtocolDevice {
         }
 
         public void printMessageData() {
-            group.printValue("group");            // Field: time - Structle::Uint64 byte offset: 24
+            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG,"printMessageData() - "+label);           // Field: time - Structle::Uint64 byte offset: 24
             if (LFXLog.isDebugEnabled()) LFXLog.d(TAG,"printMessageData() - "+label);  // Field: uptime - Structle::Uint64 byte offset: 24
             updated_at.printValue("updated_at");            // Field: downtime - Structle::Uint64 byte offset: 24
         }
 
         public static void loadMessageDataWithPayloadAtOffset(byte[] messageData, int offset
-                , UInt8 group
+                , String group
                 , String label
                 , UInt64 updated_at
         ) {
             byte[] memberData;        // = name.getBytes();
 
 
-            memberData = group.getBytes();
+
+            /*memberData = group.getBytes();
+
+            for (int i = 0; i < (memberData.length); i++) {
+                messageData[(offset + i)] = memberData[i];
+            }
+
+            offset += memberData.length;*/
+
+            //group
+            char[] groupchars = group.toCharArray();
+            //byte[] labelBytes = new byte[labelchars.length];
+            byte[] groupBytes = new byte[16];
+
+            for (int i = 0; i < 16; i++) {
+                groupBytes[i] = 0x00;
+            }
+
+            for (int i = 0; i < groupchars.length; i++) {
+                groupBytes[i] = (byte) groupchars[i];
+            }
+
+            memberData = groupBytes;
+
 
             for (int i = 0; i < (memberData.length); i++) {
                 messageData[(offset + i)] = memberData[i];
@@ -3642,6 +3692,8 @@ public class LxProtocolDevice {
             offset += memberData.length;
 
 
+
+            //label
             char[] labelchars = label.toCharArray();
             //byte[] labelBytes = new byte[labelchars.length];
             byte[] labelBytes = new byte[32];
@@ -3663,7 +3715,7 @@ public class LxProtocolDevice {
 
             offset += memberData.length;
 
-
+            //updated_at
             memberData = updated_at.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -3674,7 +3726,7 @@ public class LxProtocolDevice {
         }
 
         public static void loadMessageDataWithPayloadAtDefaultOffset(byte[] messageData
-                , UInt8 group
+                , String group
                 , String label
                 , UInt64 updated_at
         ) {
@@ -3695,15 +3747,30 @@ public class LxProtocolDevice {
 
             byte[] memberData;
 
-            // = name.getBytes();
-            memberData = group.getBytes();
+            // = group.toCharArray();
+            char[] groupchars = group.toCharArray();
+            //byte[] labelBytes = new byte[labelchars.length];
+            byte[] groupBytes = new byte[16];
+
+            for (int i = 0; i < 16; i++) {
+                groupBytes[i] = 0x00;
+            }
+
+            for (int i = 0; i < groupchars.length; i++) {
+                groupBytes[i] = (byte) groupchars[i];
+            }
+
+            memberData = groupBytes;
+
 
             for (int i = 0; i < (memberData.length); i++) {
                 bytes[(offset + i)] = memberData[i];
             }
 
             offset += memberData.length;
-            // = name.getBytes();
+
+
+            // = label.toCharArray();
             char[] labelchars = label.toCharArray();
             //byte[] labelBytes = new byte[labelchars.length];
             byte[] labelBytes = new byte[32];
@@ -3726,7 +3793,7 @@ public class LxProtocolDevice {
             offset += memberData.length;
 
 
-            // = name.getBytes();
+            // = updated_at.getBytes();
             memberData = updated_at.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {

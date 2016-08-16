@@ -244,4 +244,9 @@ public abstract class LFXLightCollection extends LFXLightTarget implements LFXLi
 	{
 		
 	}
+
+	@Override
+	public void lightDidChangeGroup(LFXLight light, String group) {
+
+	}
 }

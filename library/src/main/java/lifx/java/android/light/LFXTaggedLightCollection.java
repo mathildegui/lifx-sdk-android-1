@@ -125,6 +125,11 @@ public class LFXTaggedLightCollection extends LFXLightCollection implements LFXL
     }
 
     @Override
+    public void lightDidChangeGroup(LFXLight light, String group) {
+
+    }
+
+    @Override
     public void handleMessage(LFXMessage message) {
     }
 }
