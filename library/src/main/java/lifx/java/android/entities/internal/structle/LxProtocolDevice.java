@@ -64,7 +64,7 @@ public class LxProtocolDevice {
 
 
 
-    public static class SetSite extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::SetSite 
+    public static class SetSite extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::SetSite
     {
         // Fields: site;
         private byte[] site = new byte[6];        // Field: site - Structle::Bytes byte offset: 0
@@ -131,7 +131,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class GetPanGateway extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::GetPanGateway 
+    public static class GetPanGateway extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::GetPanGateway
     {
         private static final int PAYLOAD_SIZE = 0;
 
@@ -170,7 +170,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class StatePanGateway extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::StatePanGateway 
+    public static class StatePanGateway extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::StatePanGateway
     {
         private static final int PAYLOAD_SIZE = 5;
 
@@ -257,7 +257,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class GetTime extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::GetTime 
+    public static class GetTime extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::GetTime
     {
         private static final int PAYLOAD_SIZE = 0;
 
@@ -291,7 +291,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class SetTime extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::SetTime 
+    public static class SetTime extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::SetTime
     {
         private static final int PAYLOAD_SIZE = 8;
 
@@ -358,7 +358,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class StateTime extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::StateTime 
+    public static class StateTime extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::StateTime
     {
         // Fields: time;
         private UInt64 time;            // Field: time - Structle::Uint64 byte offset: 0
@@ -431,7 +431,7 @@ public class LxProtocolDevice {
 
             byte[] memberData;
 
-            // = name.getBytes();        		
+            // = name.getBytes();
             memberData = time.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -448,7 +448,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class GetResetSwitch extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::GetResetSwitch 
+    public static class GetResetSwitch extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::GetResetSwitch
     {
 
         private static final int PAYLOAD_SIZE = 0;
@@ -498,7 +498,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class StateResetSwitch extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::StateResetSwitch 
+    public static class StateResetSwitch extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::StateResetSwitch
     {
         // Fields: position;
         private UInt8 position;            // Field: position - Structle::Uint8 byte offset: 0
@@ -564,7 +564,7 @@ public class LxProtocolDevice {
 
             byte[] memberData;
 
-            // = name.getBytes();        		
+            // = name.getBytes();
             memberData = position.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -581,7 +581,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class GetDummyLoad extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::GetDummyLoad 
+    public static class GetDummyLoad extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::GetDummyLoad
     {
 
         private static final int PAYLOAD_SIZE = 0;
@@ -631,7 +631,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class SetDummyLoad extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::SetDummyLoad 
+    public static class SetDummyLoad extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::SetDummyLoad
     {
         // Fields: on;
         private Bool8 on;            // Field: on - Structle::Bool byte offset: 0
@@ -697,7 +697,7 @@ public class LxProtocolDevice {
 
             byte[] memberData;
 
-            // = name.getBytes();        		
+            // = name.getBytes();
             memberData = on.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -714,7 +714,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class StateDummyLoad extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::StateDummyLoad 
+    public static class StateDummyLoad extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::StateDummyLoad
     {
         // Fields: on;
         private Bool8 on;            // Field: on - Structle::Bool byte offset: 0
@@ -780,7 +780,7 @@ public class LxProtocolDevice {
 
             byte[] memberData;
 
-            // = name.getBytes();        		
+            // = name.getBytes();
             memberData = on.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -797,7 +797,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class GetMeshInfo extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::GetMeshInfo 
+    public static class GetMeshInfo extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::GetMeshInfo
     {
 
         private static final int PAYLOAD_SIZE = 0;
@@ -847,7 +847,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class StateMeshInfo extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::StateMeshInfo 
+    public static class StateMeshInfo extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::StateMeshInfo
     {
         // Fields: signal, tx, rx, mcu_temperature;
         private Float32 signal;                // Field: signal - Structle::Float byte offset: 0
@@ -1001,7 +1001,7 @@ public class LxProtocolDevice {
 
             byte[] memberData;
 
-            // = name.getBytes();        		
+            // = name.getBytes();
             memberData = signal.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -1009,7 +1009,7 @@ public class LxProtocolDevice {
             }
 
             offset += memberData.length;
-            // = name.getBytes();        		
+            // = name.getBytes();
             memberData = tx.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -1017,7 +1017,7 @@ public class LxProtocolDevice {
             }
 
             offset += memberData.length;
-            // = name.getBytes();        		
+            // = name.getBytes();
             memberData = rx.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -1025,7 +1025,7 @@ public class LxProtocolDevice {
             }
 
             offset += memberData.length;
-            // = name.getBytes();        		
+            // = name.getBytes();
             memberData = mcu_temperature.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -1042,7 +1042,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class GetMeshFirmware extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::GetMeshFirmware 
+    public static class GetMeshFirmware extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::GetMeshFirmware
     {
 
         private static final int PAYLOAD_SIZE = 0;
@@ -1092,7 +1092,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class StateMeshFirmware extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::StateMeshFirmware 
+    public static class StateMeshFirmware extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::StateMeshFirmware
     {
         // Fields: build, install, version;
         private UInt64 build;            // Field: build - Structle::Uint64 byte offset: 0
@@ -1227,7 +1227,7 @@ public class LxProtocolDevice {
 
             byte[] memberData;
 
-            // = name.getBytes();        		
+            // = name.getBytes();
             memberData = build.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -1235,7 +1235,7 @@ public class LxProtocolDevice {
             }
 
             offset += memberData.length;
-            // = name.getBytes();        		
+            // = name.getBytes();
             memberData = install.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -1243,7 +1243,7 @@ public class LxProtocolDevice {
             }
 
             offset += memberData.length;
-            // = name.getBytes();        		
+            // = name.getBytes();
             memberData = version.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -1260,7 +1260,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class GetWifiInfo extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::GetWifiInfo 
+    public static class GetWifiInfo extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::GetWifiInfo
     {
 
         private static final int PAYLOAD_SIZE = 0;
@@ -1310,7 +1310,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class StateWifiInfo extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::StateWifiInfo 
+    public static class StateWifiInfo extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::StateWifiInfo
     {
         // Fields: signal, tx, rx, mcu_temperature;
         private Float32 signal;                // Field: signal - Structle::Float byte offset: 0
@@ -1464,7 +1464,7 @@ public class LxProtocolDevice {
 
             byte[] memberData;
 
-            // = name.getBytes();        		
+            // = name.getBytes();
             memberData = signal.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -1472,7 +1472,7 @@ public class LxProtocolDevice {
             }
 
             offset += memberData.length;
-            // = name.getBytes();        		
+            // = name.getBytes();
             memberData = tx.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -1480,7 +1480,7 @@ public class LxProtocolDevice {
             }
 
             offset += memberData.length;
-            // = name.getBytes();        		
+            // = name.getBytes();
             memberData = rx.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -1488,7 +1488,7 @@ public class LxProtocolDevice {
             }
 
             offset += memberData.length;
-            // = name.getBytes();        		
+            // = name.getBytes();
             memberData = mcu_temperature.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -1505,7 +1505,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class GetWifiFirmware extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::GetWifiFirmware 
+    public static class GetWifiFirmware extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::GetWifiFirmware
     {
 
         private static final int PAYLOAD_SIZE = 0;
@@ -1555,7 +1555,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class StateWifiFirmware extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::StateWifiFirmware 
+    public static class StateWifiFirmware extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::StateWifiFirmware
     {
         // Fields: build, install, version;
         private UInt64 build;            // Field: build - Structle::Uint64 byte offset: 0
@@ -1690,7 +1690,7 @@ public class LxProtocolDevice {
 
             byte[] memberData;
 
-            // = name.getBytes();        		
+            // = name.getBytes();
             memberData = build.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -1698,7 +1698,7 @@ public class LxProtocolDevice {
             }
 
             offset += memberData.length;
-            // = name.getBytes();        		
+            // = name.getBytes();
             memberData = install.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -1706,7 +1706,7 @@ public class LxProtocolDevice {
             }
 
             offset += memberData.length;
-            // = name.getBytes();        		
+            // = name.getBytes();
             memberData = version.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -1723,7 +1723,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class GetPower extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::GetPower 
+    public static class GetPower extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::GetPower
     {
 
         private static final int PAYLOAD_SIZE = 0;
@@ -1773,7 +1773,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class SetPower extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::SetPower 
+    public static class SetPower extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::SetPower
     {
         // Fields: level;
         private UInt16 level;            // Field: level - Structle::Uint16 byte offset: 0
@@ -1840,7 +1840,7 @@ public class LxProtocolDevice {
 
             byte[] memberData;
 
-            // = name.getBytes();        		
+            // = name.getBytes();
             memberData = level.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -1857,7 +1857,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class StatePower extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::StatePower 
+    public static class StatePower extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::StatePower
     {
         // Fields: level;
         private UInt16 level;            // Field: level - Structle::Uint16 byte offset: 0
@@ -1924,7 +1924,7 @@ public class LxProtocolDevice {
 
             byte[] memberData;
 
-            // = name.getBytes();        		
+            // = name.getBytes();
             memberData = level.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -1941,7 +1941,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class GetLabel extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::GetLabel 
+    public static class GetLabel extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::GetLabel
     {
 
         private static final int PAYLOAD_SIZE = 0;
@@ -1991,7 +1991,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class SetLabel extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::SetLabel 
+    public static class SetLabel extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::SetLabel
     {
         // Fields: label;
         private String label;            // Field: label - Structle::String byte offset: 0
@@ -2117,7 +2117,7 @@ public class LxProtocolDevice {
 
             byte[] memberData;
 
-            // = name.getBytes();        		
+            // = name.getBytes();
             char[] labelchars = label.toCharArray();
             //byte[] labelBytes = new byte[labelchars.length];
             byte[] labelBytes = new byte[32];
@@ -2147,7 +2147,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class StateLabel extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::StateLabel 
+    public static class StateLabel extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::StateLabel
     {
         // Fields: label;
         private String label;            // Field: label - Structle::String byte offset: 0
@@ -2273,7 +2273,7 @@ public class LxProtocolDevice {
 
             byte[] memberData;
 
-            // = name.getBytes();        		
+            // = name.getBytes();
             char[] labelchars = label.toCharArray();
             //byte[] labelBytes = new byte[labelchars.length];
             byte[] labelBytes = new byte[32];
@@ -2303,7 +2303,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class GetTags extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::GetTags 
+    public static class GetTags extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::GetTags
     {
 
         private static final int PAYLOAD_SIZE = 0;
@@ -2353,7 +2353,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class SetTags extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::SetTags 
+    public static class SetTags extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::SetTags
     {
         // Fields: tags;
         private UInt64 tags;            // Field: tags - Structle::Uint64 byte offset: 0
@@ -2426,7 +2426,7 @@ public class LxProtocolDevice {
 
             byte[] memberData;
 
-            // = name.getBytes();        		
+            // = name.getBytes();
             memberData = tags.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -2443,7 +2443,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class StateTags extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::StateTags 
+    public static class StateTags extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::StateTags
     {
         // Fields: tags;
         private UInt64 tags;            // Field: tags - Structle::Uint64 byte offset: 0
@@ -2516,7 +2516,7 @@ public class LxProtocolDevice {
 
             byte[] memberData;
 
-            // = name.getBytes();        		
+            // = name.getBytes();
             memberData = tags.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -2533,7 +2533,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class GetTagLabels extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::GetTagLabels 
+    public static class GetTagLabels extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::GetTagLabels
     {
         // Fields: tags;
         private UInt64 tags;            // Field: tags - Structle::Uint64 byte offset: 0
@@ -2606,7 +2606,7 @@ public class LxProtocolDevice {
 
             byte[] memberData;
 
-            // = name.getBytes();        		
+            // = name.getBytes();
             memberData = tags.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -2623,7 +2623,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class SetTagLabels extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::SetTagLabels 
+    public static class SetTagLabels extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::SetTagLabels
     {
         // Fields: tags, label;
         private UInt64 tags;            // Field: tags - Structle::Uint64 byte offset: 0
@@ -2782,7 +2782,7 @@ public class LxProtocolDevice {
 
             byte[] memberData;
 
-            // = name.getBytes();        		
+            // = name.getBytes();
             memberData = tags.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -2790,7 +2790,7 @@ public class LxProtocolDevice {
             }
 
             offset += memberData.length;
-            // = name.getBytes();        		
+            // = name.getBytes();
             char[] labelchars = label.toCharArray();
             //byte[] labelBytes = new byte[labelchars.length];
             byte[] labelBytes = new byte[32];
@@ -2820,7 +2820,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class StateTagLabels extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::StateTagLabels 
+    public static class StateTagLabels extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::StateTagLabels
     {
         // Fields: tags, label;
         private UInt64 tags;            // Field: tags - Structle::Uint64 byte offset: 0
@@ -2979,7 +2979,7 @@ public class LxProtocolDevice {
 
             byte[] memberData;
 
-            // = name.getBytes();        		
+            // = name.getBytes();
             memberData = tags.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -2987,7 +2987,7 @@ public class LxProtocolDevice {
             }
 
             offset += memberData.length;
-            // = name.getBytes();        		
+            // = name.getBytes();
             char[] labelchars = label.toCharArray();
             //byte[] labelBytes = new byte[labelchars.length];
             byte[] labelBytes = new byte[32];
@@ -3017,7 +3017,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class GetVersion extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::GetVersion 
+    public static class GetVersion extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::GetVersion
     {
 
         private static final int PAYLOAD_SIZE = 0;
@@ -3067,7 +3067,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class StateVersion extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::StateVersion 
+    public static class StateVersion extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::StateVersion
     {
         // Fields: vendor, product, version;
         private UInt32 vendor;            // Field: vendor - Structle::Uint32 byte offset: 0
@@ -3194,7 +3194,7 @@ public class LxProtocolDevice {
 
             byte[] memberData;
 
-            // = name.getBytes();        		
+            // = name.getBytes();
             memberData = vendor.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -3202,7 +3202,7 @@ public class LxProtocolDevice {
             }
 
             offset += memberData.length;
-            // = name.getBytes();        		
+            // = name.getBytes();
             memberData = product.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -3210,7 +3210,7 @@ public class LxProtocolDevice {
             }
 
             offset += memberData.length;
-            // = name.getBytes();        		
+            // = name.getBytes();
             memberData = version.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -3227,7 +3227,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class GetInfo extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::GetInfo 
+    public static class GetInfo extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::GetInfo
     {
 
         private static final int PAYLOAD_SIZE = 0;
@@ -3277,7 +3277,7 @@ public class LxProtocolDevice {
         }
     }
 
-    public static class StateInfo extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::StateInfo 
+    public static class StateInfo extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::StateInfo
     {
         // Fields: time, uptime, downtime;
         private UInt64 time;            // Field: time - Structle::Uint64 byte offset: 0
@@ -3416,7 +3416,7 @@ public class LxProtocolDevice {
 
             byte[] memberData;
 
-            // = name.getBytes();        		
+            // = name.getBytes();
             memberData = time.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -3424,7 +3424,7 @@ public class LxProtocolDevice {
             }
 
             offset += memberData.length;
-            // = name.getBytes();        		
+            // = name.getBytes();
             memberData = uptime.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -3432,7 +3432,7 @@ public class LxProtocolDevice {
             }
 
             offset += memberData.length;
-            // = name.getBytes();        		
+            // = name.getBytes();
             memberData = downtime.getBytes();
 
             for (int i = 0; i < (memberData.length); i++) {
@@ -3502,9 +3502,12 @@ public class LxProtocolDevice {
     public static class StateGroup extends LxProtocolTypeBase        // Struct: Lx::Protocol::Device::StateGroup
     {
         // Fields: group, label, updated_at;
-        private String group;            // Field: group - Structle::Uint64 byte offset: 8
-        private String label;            // Field: label - Structle::String byte offset: 40
-        private UInt64 updated_at;       // Field: updated_at - Structle::Uint64 byte offset: 48
+        //private String group;            // Field: group - Structle::Uint64 byte offset: 16
+        private byte[] group = new byte[16];          // Field: group - Structle::Uint64 byte offset: 16
+        private String label;            // Field: label - Structle::String byte offset: 48
+        private UInt64 updated_at;       // Field: updated_at - Structle::Uint64 byte offset: 56
+
+
 
         private static final int PAYLOAD_SIZE = 56;
 
@@ -3514,7 +3517,7 @@ public class LxProtocolDevice {
 
         public StateGroup(byte[] bytes, int initialOffset) {
             byte[] member0Data = new byte[16];
-            member0Data[0] = bytes[initialOffset + 0];
+            member0Data[0] = bytes[initialOffset];
             member0Data[1] = bytes[initialOffset + 1];
             member0Data[2] = bytes[initialOffset + 2];
             member0Data[3] = bytes[initialOffset + 3];
@@ -3535,7 +3538,7 @@ public class LxProtocolDevice {
             member0Data[0] = bytes[initialOffset];*/
 
             //group = new UInt8(member0Data);
-            int endOfStringIndex0;
+            /*int endOfStringIndex0;
             byte[] subString0;
 
             endOfStringIndex0 = member0Data.length;
@@ -3552,7 +3555,8 @@ public class LxProtocolDevice {
                 subString0[i] = member0Data[i];
             }
 
-            group = new String(subString0);
+            group = new String(subString0);*/
+            group = member0Data;
 
 
             byte[] member1Data = new byte[32];
@@ -3625,7 +3629,7 @@ public class LxProtocolDevice {
         }
 
         public StateGroup(Object padding
-                , String group
+                , byte [] group
                 , String label
                 , UInt64 updated_at
         ) {
@@ -3634,7 +3638,7 @@ public class LxProtocolDevice {
             this.updated_at = updated_at;
         }
 
-        public String getGroup() {
+        public byte [] getGroup() {
             return group;
         }
 
@@ -3647,50 +3651,22 @@ public class LxProtocolDevice {
         }
 
         public void printMessageData() {
-            if (LFXLog.isDebugEnabled()) LFXLog.d(TAG,"printMessageData() - "+label);           // Field: time - Structle::Uint64 byte offset: 24
             if (LFXLog.isDebugEnabled()) LFXLog.d(TAG,"printMessageData() - "+label);  // Field: uptime - Structle::Uint64 byte offset: 24
             updated_at.printValue("updated_at");            // Field: downtime - Structle::Uint64 byte offset: 24
         }
 
         public static void loadMessageDataWithPayloadAtOffset(byte[] messageData, int offset
-                , String group
+                , byte [] group
                 , String label
                 , UInt64 updated_at
         ) {
             byte[] memberData;        // = name.getBytes();
 
 
-
-            /*memberData = group.getBytes();
-
-            for (int i = 0; i < (memberData.length); i++) {
-                messageData[(offset + i)] = memberData[i];
-            }
-
-            offset += memberData.length;*/
-
             //group
-            char[] groupchars = group.toCharArray();
-            //byte[] labelBytes = new byte[labelchars.length];
-            byte[] groupBytes = new byte[16];
-
-            for (int i = 0; i < 16; i++) {
-                groupBytes[i] = 0x00;
-            }
-
-            for (int i = 0; i < groupchars.length; i++) {
-                groupBytes[i] = (byte) groupchars[i];
-            }
-
-            memberData = groupBytes;
-
-
-            for (int i = 0; i < (memberData.length); i++) {
-                messageData[(offset + i)] = memberData[i];
-            }
-
+            memberData = group;
+            System.arraycopy(memberData, 0, messageData, offset, memberData.length);
             offset += memberData.length;
-
 
 
             //label
@@ -3726,7 +3702,7 @@ public class LxProtocolDevice {
         }
 
         public static void loadMessageDataWithPayloadAtDefaultOffset(byte[] messageData
-                , String group
+                , byte [] group
                 , String label
                 , UInt64 updated_at
         ) {
@@ -3747,26 +3723,9 @@ public class LxProtocolDevice {
 
             byte[] memberData;
 
-            // = group.toCharArray();
-            char[] groupchars = group.toCharArray();
-            //byte[] labelBytes = new byte[labelchars.length];
-            byte[] groupBytes = new byte[16];
-
-            for (int i = 0; i < 16; i++) {
-                groupBytes[i] = 0x00;
-            }
-
-            for (int i = 0; i < groupchars.length; i++) {
-                groupBytes[i] = (byte) groupchars[i];
-            }
-
-            memberData = groupBytes;
-
-
-            for (int i = 0; i < (memberData.length); i++) {
-                bytes[(offset + i)] = memberData[i];
-            }
-
+            // = group.getBytes();
+            memberData = group;
+            System.arraycopy(memberData, 0, bytes, offset, memberData.length);
             offset += memberData.length;
 
 
